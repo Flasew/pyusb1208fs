@@ -178,12 +178,12 @@ cdef class USB1208FS:
         if not data:
             raise MemoryError()
 
+        cdef int i = 0
         try:
             if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
                     &freq, data, options) < 0:
                 raise ValueError("Analog out scan failed, see C error message.")
             dataList = []
-            cdef int i = 0
             for i in range(count):
                 dataList.append(<int>data[i])
             return dataList             #XXX
@@ -275,12 +275,12 @@ cdef class USB1208FS:
         if not data:
             raise MemoryError()
 
+        cdef int i = 0
         try:
             if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
                     &freq, options, data) < 0:
                 raise ValueError("Analog in scan failed, see C error message.")
             dataList = []
-            cdef int i = 0
             for i in range(count):
                 dataList.append(<int>data[i])
             return dataList             #XXX
@@ -305,14 +305,13 @@ cdef class USB1208FS:
         if not data:
             raise MemoryError()
             
+        cdef int i = 0
         try:
-
             if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \
                     count, &freq, options, data) < 0:
                 raise ValueError("Analog in SE scan failed, see C error message.")
 
             dataList = []
-            cdef int i = 0
             for i in range(count):
                 dataList.append(<int>data[i])
             return dataList         #XXX
@@ -347,8 +346,8 @@ cdef class USB1208FS:
         if not gainArr:
             raise MemoryError()
 
+        cdef int i
         try:
-            cdef int i
             for i in range(len(chan)):
                 chanArr[i] = <np.uint8_t>chan[i]
                 gainArr[i] = <np.uint8_t>gains[i]
@@ -411,8 +410,8 @@ cdef class USB1208FS:
         if not dataArr:
             raise MemoryError()
 
+        cdef int i
         try:
-            cdef int i
             for i in range(count):
                 dataArr[i] = data[i]
 
