@@ -11,6 +11,7 @@ from libc.stdint cimport uint8_t, u
 cimport numpy as np
 import numpy as np
 import sys
+cimport cython
 
 np.import_array()
 
@@ -37,8 +38,9 @@ cdef class USB1208FS:
 
     cdef libusb_device_handle * udev
     cdef int maxPacketSize
-    cdef np.ndarray * data
 
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
     def __cinit__(self):
         """Constructor of the DAQ.
         Calls relevant C functions to acquire the handler of USB_1208FS"""
