@@ -7,6 +7,7 @@
 
 from c1208fs cimport *
 from libc.stdlib cimport malloc, free
+from libc.stdint cimport uint8_t, uint16_t, uint32_t, int16_t
 cimport numpy as np
 import numpy as np
 import sys
@@ -173,18 +174,22 @@ cdef class USB1208FS:
         For safety issue, I'll copy the result of scan to a python list
         """
 
-        cdef np.int16_t[count] data   # holds the returned data
+        cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
+        if not data:
+            raise MemoryError()
 
-        if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
-                &freq, data, options) < 0:
-            raise ValueError("Analog out scan failed, see C error message.")
+        try:
+            if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
+                    &freq, data, options) < 0:
+                raise ValueError("Analog out scan failed, see C error message.")
+            dataList = []
+            cdef int i = 0
+            for i in range(count):
+                dataList.append(<int>data[i])
+            return dataList             #XXX
 
-        dataList = []
-        cdef int i = 0
-        for i in range(count):
-            dataList.append(<int>data[i])
-
-        return dataList             #XXX
+        finally:
+            free(data)
 
     def aoutStop(self):
         """Wraps usbAOutStop_USB1208FS():
@@ -266,17 +271,22 @@ cdef class USB1208FS:
 
         For safety issue, I'll copy the result of scan to a python list
         """
-        cdef np.int16_t[count] data   # holds the returned data
+        cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
+        if not data:
+            raise MemoryError()
 
-        if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
-                &freq, options, data) < 0:
-            raise ValueError("Analog in scan failed, see C error message.")
+        try:
+            if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
+                    &freq, options, data) < 0:
+                raise ValueError("Analog in scan failed, see C error message.")
+            dataList = []
+            cdef int i = 0
+            for i in range(count):
+                dataList.append(<int>data[i])
+            return dataList             #XXX
 
-        dataList = []
-        cdef int i = 0
-        for i in range(count):
-            dataList.append(<int>data[i])
-        return dataList             #XXX
+        finally:
+            free(data)
 
     def ainScanSE(self, np.uint8_t lowchannel, np.uint8_t highchannel, 
             np.uint32_t count, np.float32_t freq, np.uint8_t options):
@@ -291,17 +301,24 @@ cdef class USB1208FS:
 
         For safety issue, I'll copy the result of scan to a python list
         """
-        cdef np.int16_t[count] data   # holds the returned data
+        cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
+        if not data:
+            raise MemoryError()
+            
+        try:
 
-        if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, count, \
-                &freq, options, data) < 0:
-            raise ValueError("Analog in SE scan failed, see C error message.")
+            if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \
+                    count, &freq, options, data) < 0:
+                raise ValueError("Analog in SE scan failed, see C error message.")
 
-        dataList = []
-        cdef int i = 0
-        for i in range(count):
-            dataList.append(<int>data[i])
-        return dataList         #XXX
+            dataList = []
+            cdef int i = 0
+            for i in range(count):
+                dataList.append(<int>data[i])
+            return dataList         #XXX
+
+        finally:
+            free(data)
 
     def aLoadQueue(self, np.uint8_t num, chan, gains):
         """Wraps usbALoadQueue_USB1208FS(), with modifications:
@@ -320,14 +337,27 @@ cdef class USB1208FS:
         """
         if len(chan) != len(gains):
             raise ValueError("length of chans and gains are not the same.")
-        cdef np.uint8_t[len(chan)] chanArr
-        cdef np.uint8_t[len(gains)] gainArr
-        cdef int i
-        for i in range(len(chan)):
-            chanArr[i] = <np.uint8_t>chan[i]
-            gainArr[i] = <np.uint8_t>gains[i]
 
-        usbALoadQueue_USB1208FS(self.udev, num, chanArr, gainArr)
+        cdef np.uint8_t * chanArr = \
+            <np.uint8_t*>malloc(len(chan) * sizeof(np.uint8_t))
+        if not chanArr:
+            raise MemoryError()
+        cdef np.uint8_t * gainArr = \
+            <np.uint8_t*>malloc(len(gains) * sizeof(np.uint8_t))
+        if not gainArr:
+            raise MemoryError()
+
+        try:
+            cdef int i
+            for i in range(len(chan)):
+                chanArr[i] = <np.uint8_t>chan[i]
+                gainArr[i] = <np.uint8_t>gains[i]
+
+            usbALoadQueue_USB1208FS(self.udev, num, chanArr, gainArr)
+
+        finally:
+            free(chanArr)
+            free(gainArr)
 
     def initCounter(self):
         """Wraps usbInitCounter_USB1208FS():
@@ -376,13 +406,21 @@ cdef class USB1208FS:
         Arguments:
         data {list} - data to be written into the memory
         """
-        cdef np.uint8_t[count] dataArr
-        cdef int i
-        for i in range(count):
-            dataArr[i] = data[i]
+        cdef np.uint8_t * dataArr = 
+            <np.uint8_t>malloc(count * sizeof(np.uint8_t))
+        if not dataArr:
+            raise MemoryError()
 
-        if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:
-            raise ValueError("Could not write to memory.")
+        try:
+            cdef int i
+            for i in range(count):
+                dataArr[i] = data[i]
+
+            if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:
+                raise ValueError("Could not write to memory.")
+
+        finally:
+            free(dataArr)
 
     def blink(self):
         """Wraps usbBlink_USB1208FS():

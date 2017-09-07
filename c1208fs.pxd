@@ -41,7 +41,9 @@ cdef extern from "pmd.h":
     int usb_get_max_packet_size(libusb_device_handle * udev, int endpointNum)
 
 # <libusb-1.0/libusb.h> which is included by pmd.h
-cdef extern from *:
+cdef extern from <libusb-1.0/libusb.h>:
+    cdef struct libusb_device_handle:
+        pass
     int  libusb_init(libusb_context ** context)
     void libusb_exit(struct libusb_context * ctx) 
     int  libusb_clear_halt(libusb_device_handle * dev, unsigned char endpoint)
@@ -49,6 +51,7 @@ cdef extern from *:
         int interface_number)
     void libusb_close(libusb_device_handle * dev)
     void libusb_exit(libusb_context ** context)
+
 
 # usb-1208FS.h
 cdef extern from "usb-1208FS.h":
