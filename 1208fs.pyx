@@ -7,7 +7,6 @@
 
 from c1208fs cimport *
 from libc.stdlib cimport malloc, free
-from libc.stdint cimport uint8_t, u
 cimport numpy as np
 import numpy as np
 import sys
@@ -46,7 +45,7 @@ cdef class USB1208FS:
         Calls relevant C functions to acquire the handler of USB_1208FS"""
 
         self.udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL)
-        if self.udev == NULL || <int>self.udev == -1:
+        if (self.udev == NULL) or (<int>self.udev == -1):
             raise ValueError("Could not initialize USB1208FS, no device found.")
         else:
             init_USB1208FS(self.udev)

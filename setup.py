@@ -19,18 +19,5 @@ setup(
     cmdclass={'build_ext': build_ext},
     ext_modules = [usb1208fs],
     platforms=['linux'],
-    classifiers = classifiers
 )
 
-#A Python driver for MCCDAQ's USB2600 data acquisition devices, providing: 
-
-    #- a Cython wrapper to Warren Jasper's original Linux MCCDAQ driver (available here_),
-
-    #- an object-oriented interface build on top of the Cython wrapper.
-
-    #The driver includes advanced functionalities for analog input and output scans of arbitrary length and synchronous analog input/output scanning.
-
-    #Get in touch if anybody is interested in adding support for other MCC devices.
-
-    #.. _here: ftp://lx10.tx.ncsu.edu/pub/Linux/drivers/USB
-    #""",
