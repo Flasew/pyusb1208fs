@@ -976,8 +976,8 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "usb1208fs.pyx":24
- *     raise ImportError("Could not load libusb.")
+/* "usb1208fs.pyx":73
+ *     return <float>volt
  * 
  * cdef class USB1208FS:             # <<<<<<<<<<<<<<
  *     """Python wrapper of the C-based USB_1208FS DAQ driver written by
@@ -1077,8 +1077,19 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
 
+/* RaiseDoubleKeywords.proto */
+static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
+
+/* ParseKeywords.proto */
+static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
+    PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
+    const char* function_name);
+
 /* KeywordStringCheck.proto */
 static CYTHON_INLINE int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed);
+
+/* GetModuleGlobalName.proto */
+static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name);
 
 /* PyObjectCall.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -1113,14 +1124,6 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 
 /* RaiseException.proto */
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
-
-/* RaiseDoubleKeywords.proto */
-static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
-
-/* ParseKeywords.proto */
-static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
-    PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
-    const char* function_name);
 
 /* ListAppend.proto */
 #if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
@@ -1234,12 +1237,6 @@ static int __Pyx_setup_reduce(PyObject* type_obj);
 
 /* Import.proto */
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
-
-/* GetModuleGlobalName.proto */
-static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name);
-
-/* GetNameInClass.proto */
-static PyObject *__Pyx_GetNameInClass(PyObject *nmspace, PyObject *name);
 
 /* CLineInTraceback.proto */
 static int __Pyx_CLineForTraceback(int c_line);
@@ -1377,6 +1374,9 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_npy_uint32(npy_uint32 value);
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__NPY_TYPES(enum NPY_TYPES value);
 
 /* CIntFromPy.proto */
+static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
+
+/* CIntFromPy.proto */
 static CYTHON_INLINE npy_uint8 __Pyx_PyInt_As_npy_uint8(PyObject *);
 
 /* CIntFromPy.proto */
@@ -1384,9 +1384,6 @@ static CYTHON_INLINE npy_uint16 __Pyx_PyInt_As_npy_uint16(PyObject *);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE npy_uint32 __Pyx_PyInt_As_npy_uint32(PyObject *);
-
-/* CIntFromPy.proto */
-static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
@@ -1459,7 +1456,6 @@ int __pyx_module_is_main_usb1208fs = 0;
 
 /* Implementation of 'usb1208fs' */
 static PyObject *__pyx_builtin_ImportError;
-static PyObject *__pyx_builtin_staticmethod;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_print;
 static PyObject *__pyx_builtin_range;
@@ -1523,7 +1519,6 @@ static const char __pyx_k_MemoryError[] = "MemoryError";
 static const char __pyx_k_UPDATE_MODE[] = "UPDATE_MODE";
 static const char __pyx_k_highchannel[] = "highchannel";
 static const char __pyx_k_RuntimeError[] = "RuntimeError";
-static const char __pyx_k_staticmethod[] = "staticmethod";
 static const char __pyx_k_AIN_EXECUTION[] = "AIN_EXECUTION";
 static const char __pyx_k_EXT_TRIG_EDGE[] = "EXT_TRIG_EDGE";
 static const char __pyx_k_USB1208FS_PID[] = "USB1208FS_PID";
@@ -1629,7 +1624,6 @@ static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
-static PyObject *__pyx_n_s_staticmethod;
 static PyObject *__pyx_n_s_sys;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_toVoltsFS;
@@ -1639,6 +1633,8 @@ static PyObject *__pyx_n_s_usb1208fs;
 static PyObject *__pyx_kp_s_usb1208fs_pyx;
 static PyObject *__pyx_n_s_value;
 static PyObject *__pyx_n_s_volt;
+static PyObject *__pyx_pf_9usb1208fs_toVoltsFS(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_gain, int __pyx_v_num); /* proto */
+static PyObject *__pyx_pf_9usb1208fs_2toVoltsSE(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_num); /* proto */
 static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_4dConfigPort(struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self, __pyx_t_5numpy_uint8_t __pyx_v_port, __pyx_t_5numpy_uint8_t __pyx_v_direction); /* proto */
@@ -1663,10 +1659,8 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_40setTrigger(struct __pyx_obj_9u
 static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_42setSync(struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self, __pyx_t_5numpy_uint8_t __pyx_v__type); /* proto */
 static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_44_getAll(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_46init(struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_48toVoltsFS(int __pyx_v_gain, int __pyx_v_num); /* proto */
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_50toVoltsSE(int __pyx_v_num); /* proto */
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_48__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_50__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tp_new_9usb1208fs_USB1208FS(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -1698,7 +1692,208 @@ static PyObject *__pyx_tuple__26;
 static PyObject *__pyx_codeobj__25;
 static PyObject *__pyx_codeobj__27;
 
-/* "usb1208fs.pyx":69
+/* "usb1208fs.pyx":54
+ * 
+ * # module-scale functions
+ * def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
+ *     """Wraps volts_FS():
+ *     converts signed short value to volts for Differential Mode
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9usb1208fs_1toVoltsFS(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_9usb1208fs_toVoltsFS[] = "Wraps volts_FS():\n    converts signed short value to volts for Differential Mode\n    ";
+static PyMethodDef __pyx_mdef_9usb1208fs_1toVoltsFS = {"toVoltsFS", (PyCFunction)__pyx_pw_9usb1208fs_1toVoltsFS, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9usb1208fs_toVoltsFS};
+static PyObject *__pyx_pw_9usb1208fs_1toVoltsFS(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  int __pyx_v_gain;
+  int __pyx_v_num;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("toVoltsFS (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_gain,&__pyx_n_s_num,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_gain)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_num)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("toVoltsFS", 1, 2, 2, 1); __PYX_ERR(0, 54, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toVoltsFS") < 0)) __PYX_ERR(0, 54, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_gain = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_gain == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
+    __pyx_v_num = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_num == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("toVoltsFS", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 54, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("usb1208fs.toVoltsFS", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_9usb1208fs_toVoltsFS(__pyx_self, __pyx_v_gain, __pyx_v_num);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9usb1208fs_toVoltsFS(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_gain, int __pyx_v_num) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("toVoltsFS", 0);
+
+  /* "usb1208fs.pyx":58
+ *     converts signed short value to volts for Differential Mode
+ *     """
+ *     return <float>volts_FS(gain, num)             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(((float)volts_FS(__pyx_v_gain, __pyx_v_num))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "usb1208fs.pyx":54
+ * 
+ * # module-scale functions
+ * def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
+ *     """Wraps volts_FS():
+ *     converts signed short value to volts for Differential Mode
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("usb1208fs.toVoltsFS", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "usb1208fs.pyx":61
+ * 
+ * 
+ * def toVoltsSE(int num):             # <<<<<<<<<<<<<<
+ *     """ Same as volts_SE, rewritten in cython
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9usb1208fs_3toVoltsSE(PyObject *__pyx_self, PyObject *__pyx_arg_num); /*proto*/
+static char __pyx_doc_9usb1208fs_2toVoltsSE[] = " Same as volts_SE, rewritten in cython\n\n    Parameters: \n    num {short} - 16-bit number read by DAQ\n\n    Returns: {np.float32_t} read value in volts\n    ";
+static PyMethodDef __pyx_mdef_9usb1208fs_3toVoltsSE = {"toVoltsSE", (PyCFunction)__pyx_pw_9usb1208fs_3toVoltsSE, METH_O, __pyx_doc_9usb1208fs_2toVoltsSE};
+static PyObject *__pyx_pw_9usb1208fs_3toVoltsSE(PyObject *__pyx_self, PyObject *__pyx_arg_num) {
+  int __pyx_v_num;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("toVoltsSE (wrapper)", 0);
+  assert(__pyx_arg_num); {
+    __pyx_v_num = __Pyx_PyInt_As_int(__pyx_arg_num); if (unlikely((__pyx_v_num == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("usb1208fs.toVoltsSE", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_9usb1208fs_2toVoltsSE(__pyx_self, ((int)__pyx_v_num));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9usb1208fs_2toVoltsSE(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_num) {
+  __pyx_t_5numpy_float32_t __pyx_v_volt;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("toVoltsSE", 0);
+
+  /* "usb1208fs.pyx":69
+ *     Returns: {np.float32_t} read value in volts
+ *     """
+ *     cdef np.float32_t volt = 0.0             # <<<<<<<<<<<<<<
+ *     volt = num * 10.0 / 0x7fff
+ *     return <float>volt
+ */
+  __pyx_v_volt = 0.0;
+
+  /* "usb1208fs.pyx":70
+ *     """
+ *     cdef np.float32_t volt = 0.0
+ *     volt = num * 10.0 / 0x7fff             # <<<<<<<<<<<<<<
+ *     return <float>volt
+ * 
+ */
+  __pyx_v_volt = ((__pyx_v_num * 10.0) / 32767.0);
+
+  /* "usb1208fs.pyx":71
+ *     cdef np.float32_t volt = 0.0
+ *     volt = num * 10.0 / 0x7fff
+ *     return <float>volt             # <<<<<<<<<<<<<<
+ * 
+ * cdef class USB1208FS:
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(((float)__pyx_v_volt)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "usb1208fs.pyx":61
+ * 
+ * 
+ * def toVoltsSE(int num):             # <<<<<<<<<<<<<<
+ *     """ Same as volts_SE, rewritten in cython
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("usb1208fs.toVoltsSE", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "usb1208fs.pyx":91
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1725,52 +1920,57 @@ static int __pyx_pw_9usb1208fs_9USB1208FS_1__cinit__(PyObject *__pyx_v_self, PyO
 static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
+  PyObject *__pyx_t_1 = NULL;
   int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_3;
+  int __pyx_t_4;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "usb1208fs.pyx":73
+  /* "usb1208fs.pyx":95
  *         Calls relevant C functions to acquire the handler of USB_1208FS"""
  * 
  *         self.udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL)             # <<<<<<<<<<<<<<
  *         if (self.udev == NULL) or (<int>self.udev == -1):
  *             raise ValueError("Could not initialize USB1208FS, no device found.")
  */
-  __pyx_v_self->udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL);
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_USB1208FS_PID); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_self->udev = usb_device_find_USB_MCC(__pyx_t_2, NULL);
 
-  /* "usb1208fs.pyx":74
+  /* "usb1208fs.pyx":96
  * 
  *         self.udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL)
  *         if (self.udev == NULL) or (<int>self.udev == -1):             # <<<<<<<<<<<<<<
  *             raise ValueError("Could not initialize USB1208FS, no device found.")
  *         else:
  */
-  __pyx_t_2 = ((__pyx_v_self->udev == NULL) != 0);
-  if (!__pyx_t_2) {
+  __pyx_t_4 = ((__pyx_v_self->udev == NULL) != 0);
+  if (!__pyx_t_4) {
   } else {
-    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_3 = __pyx_t_4;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = ((((int)__pyx_v_self->udev) == -1L) != 0);
-  __pyx_t_1 = __pyx_t_2;
+  __pyx_t_4 = ((((int)__pyx_v_self->udev) == -1L) != 0);
+  __pyx_t_3 = __pyx_t_4;
   __pyx_L4_bool_binop_done:;
-  if (__pyx_t_1) {
+  if (__pyx_t_3) {
 
-    /* "usb1208fs.pyx":75
+    /* "usb1208fs.pyx":97
  *         self.udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL)
  *         if (self.udev == NULL) or (<int>self.udev == -1):
  *             raise ValueError("Could not initialize USB1208FS, no device found.")             # <<<<<<<<<<<<<<
  *         else:
  *             init_USB1208FS(self.udev)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __PYX_ERR(0, 97, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":74
+    /* "usb1208fs.pyx":96
  * 
  *         self.udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL)
  *         if (self.udev == NULL) or (<int>self.udev == -1):             # <<<<<<<<<<<<<<
@@ -1779,7 +1979,7 @@ static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_
  */
   }
 
-  /* "usb1208fs.pyx":77
+  /* "usb1208fs.pyx":99
  *             raise ValueError("Could not initialize USB1208FS, no device found.")
  *         else:
  *             init_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -1790,7 +1990,7 @@ static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_
     init_USB1208FS(__pyx_v_self->udev);
   }
 
-  /* "usb1208fs.pyx":78
+  /* "usb1208fs.pyx":100
  *         else:
  *             init_USB1208FS(self.udev)
  *         self.maxPacketSize = usb_get_max_packet_size(self.udev, 0)             # <<<<<<<<<<<<<<
@@ -1799,7 +1999,7 @@ static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_
  */
   __pyx_v_self->maxPacketSize = usb_get_max_packet_size(__pyx_v_self->udev, 0);
 
-  /* "usb1208fs.pyx":69
+  /* "usb1208fs.pyx":91
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1811,7 +2011,7 @@ static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_AddTraceback("usb1208fs.USB1208FS.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
@@ -1819,7 +2019,7 @@ static int __pyx_pf_9usb1208fs_9USB1208FS___cinit__(struct __pyx_obj_9usb1208fs_
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":80
+/* "usb1208fs.pyx":102
  *         self.maxPacketSize = usb_get_max_packet_size(self.udev, 0)
  * 
  *     def __del__(self):             # <<<<<<<<<<<<<<
@@ -1849,18 +2049,18 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("__del__", 0);
 
-  /* "usb1208fs.pyx":82
+  /* "usb1208fs.pyx":104
  *     def __del__(self):
  *         """Fully close the device."""
  *         print("Closing...")             # <<<<<<<<<<<<<<
  *         cdef int i = 0
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 1)
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "usb1208fs.pyx":83
+  /* "usb1208fs.pyx":105
  *         """Fully close the device."""
  *         print("Closing...")
  *         cdef int i = 0             # <<<<<<<<<<<<<<
@@ -1869,7 +2069,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   __pyx_v_i = 0;
 
-  /* "usb1208fs.pyx":84
+  /* "usb1208fs.pyx":106
  *         print("Closing...")
  *         cdef int i = 0
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 1)             # <<<<<<<<<<<<<<
@@ -1878,7 +2078,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   libusb_clear_halt(__pyx_v_self->udev, (LIBUSB_ENDPOINT_IN | 1));
 
-  /* "usb1208fs.pyx":85
+  /* "usb1208fs.pyx":107
  *         cdef int i = 0
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 1)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_OUT| 2)             # <<<<<<<<<<<<<<
@@ -1887,7 +2087,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   libusb_clear_halt(__pyx_v_self->udev, (LIBUSB_ENDPOINT_OUT | 2));
 
-  /* "usb1208fs.pyx":86
+  /* "usb1208fs.pyx":108
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 1)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_OUT| 2)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 3)             # <<<<<<<<<<<<<<
@@ -1896,7 +2096,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   libusb_clear_halt(__pyx_v_self->udev, (LIBUSB_ENDPOINT_IN | 3));
 
-  /* "usb1208fs.pyx":87
+  /* "usb1208fs.pyx":109
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_OUT| 2)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 3)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 4)             # <<<<<<<<<<<<<<
@@ -1905,7 +2105,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   libusb_clear_halt(__pyx_v_self->udev, (LIBUSB_ENDPOINT_IN | 4));
 
-  /* "usb1208fs.pyx":88
+  /* "usb1208fs.pyx":110
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 3)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 4)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 5)             # <<<<<<<<<<<<<<
@@ -1914,7 +2114,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   libusb_clear_halt(__pyx_v_self->udev, (LIBUSB_ENDPOINT_IN | 5));
 
-  /* "usb1208fs.pyx":89
+  /* "usb1208fs.pyx":111
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 4)
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 5)
  *         for i in range(4):             # <<<<<<<<<<<<<<
@@ -1924,7 +2124,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
   for (__pyx_t_2 = 0; __pyx_t_2 < 4; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "usb1208fs.pyx":90
+    /* "usb1208fs.pyx":112
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 5)
  *         for i in range(4):
  *             libusb_release_interface(self.udev, i)             # <<<<<<<<<<<<<<
@@ -1934,7 +2134,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
     libusb_release_interface(__pyx_v_self->udev, __pyx_v_i);
   }
 
-  /* "usb1208fs.pyx":91
+  /* "usb1208fs.pyx":113
  *         for i in range(4):
  *             libusb_release_interface(self.udev, i)
  *         libusb_close(self.udev);             # <<<<<<<<<<<<<<
@@ -1943,7 +2143,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
  */
   libusb_close(__pyx_v_self->udev);
 
-  /* "usb1208fs.pyx":80
+  /* "usb1208fs.pyx":102
  *         self.maxPacketSize = usb_get_max_packet_size(self.udev, 0)
  * 
  *     def __del__(self):             # <<<<<<<<<<<<<<
@@ -1964,7 +2164,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_2__del__(struct __pyx_obj_9usb12
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":93
+/* "usb1208fs.pyx":115
  *         libusb_close(self.udev);
  * 
  *     def dConfigPort(self, np.uint8_t port, np.uint8_t direction):             # <<<<<<<<<<<<<<
@@ -2004,11 +2204,11 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_5dConfigPort(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_direction)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("dConfigPort", 1, 2, 2, 1); __PYX_ERR(0, 93, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dConfigPort", 1, 2, 2, 1); __PYX_ERR(0, 115, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dConfigPort") < 0)) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dConfigPort") < 0)) __PYX_ERR(0, 115, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2016,12 +2216,12 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_5dConfigPort(PyObject *__pyx_v_s
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_port = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_port == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L3_error)
-    __pyx_v_direction = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_direction == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 93, __pyx_L3_error)
+    __pyx_v_port = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_port == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 115, __pyx_L3_error)
+    __pyx_v_direction = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_direction == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 115, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dConfigPort", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 93, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dConfigPort", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 115, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.dConfigPort", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2041,7 +2241,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_4dConfigPort(struct __pyx_obj_9u
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("dConfigPort", 0);
 
-  /* "usb1208fs.pyx":99
+  /* "usb1208fs.pyx":121
  *             Direction: 0 = output,  1 = input
  *         """
  *         if usbDConfigPort_USB1208FS(self.udev, port, direction) != 0:             # <<<<<<<<<<<<<<
@@ -2051,20 +2251,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_4dConfigPort(struct __pyx_obj_9u
   __pyx_t_1 = ((usbDConfigPort_USB1208FS(__pyx_v_self->udev, __pyx_v_port, __pyx_v_direction) != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":100
+    /* "usb1208fs.pyx":122
  *         """
  *         if usbDConfigPort_USB1208FS(self.udev, port, direction) != 0:
  *             raise ValueError("Could not configure port.")             # <<<<<<<<<<<<<<
  * 
  *     def din(self, np.uint8_t port):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 122, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":99
+    /* "usb1208fs.pyx":121
  *             Direction: 0 = output,  1 = input
  *         """
  *         if usbDConfigPort_USB1208FS(self.udev, port, direction) != 0:             # <<<<<<<<<<<<<<
@@ -2073,7 +2273,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_4dConfigPort(struct __pyx_obj_9u
  */
   }
 
-  /* "usb1208fs.pyx":93
+  /* "usb1208fs.pyx":115
  *         libusb_close(self.udev);
  * 
  *     def dConfigPort(self, np.uint8_t port, np.uint8_t direction):             # <<<<<<<<<<<<<<
@@ -2094,7 +2294,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_4dConfigPort(struct __pyx_obj_9u
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":102
+/* "usb1208fs.pyx":124
  *             raise ValueError("Could not configure port.")
  * 
  *     def din(self, np.uint8_t port):             # <<<<<<<<<<<<<<
@@ -2111,7 +2311,7 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_7din(PyObject *__pyx_v_self, PyO
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("din (wrapper)", 0);
   assert(__pyx_arg_port); {
-    __pyx_v_port = __Pyx_PyInt_As_npy_uint8(__pyx_arg_port); if (unlikely((__pyx_v_port == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L3_error)
+    __pyx_v_port = __Pyx_PyInt_As_npy_uint8(__pyx_arg_port); if (unlikely((__pyx_v_port == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 124, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2134,7 +2334,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_6din(struct __pyx_obj_9usb1208fs
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("din", 0);
 
-  /* "usb1208fs.pyx":110
+  /* "usb1208fs.pyx":132
  *         """
  *         cdef np.uint8_t din_value
  *         if usbDIn_USB1208FS(self.udev, port, &din_value) != 0:             # <<<<<<<<<<<<<<
@@ -2144,20 +2344,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_6din(struct __pyx_obj_9usb1208fs
   __pyx_t_1 = ((usbDIn_USB1208FS(__pyx_v_self->udev, __pyx_v_port, (&__pyx_v_din_value)) != 0) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":111
+    /* "usb1208fs.pyx":133
  *         cdef np.uint8_t din_value
  *         if usbDIn_USB1208FS(self.udev, port, &din_value) != 0:
  *             raise ValueError("Could not configure port.")             # <<<<<<<<<<<<<<
  *         return din_value
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 111, __pyx_L1_error)
+    __PYX_ERR(0, 133, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":110
+    /* "usb1208fs.pyx":132
  *         """
  *         cdef np.uint8_t din_value
  *         if usbDIn_USB1208FS(self.udev, port, &din_value) != 0:             # <<<<<<<<<<<<<<
@@ -2166,7 +2366,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_6din(struct __pyx_obj_9usb1208fs
  */
   }
 
-  /* "usb1208fs.pyx":112
+  /* "usb1208fs.pyx":134
  *         if usbDIn_USB1208FS(self.udev, port, &din_value) != 0:
  *             raise ValueError("Could not configure port.")
  *         return din_value             # <<<<<<<<<<<<<<
@@ -2174,13 +2374,13 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_6din(struct __pyx_obj_9usb1208fs
  *     def dout(self, np.uint8_t port, np.uint8_t value):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_npy_uint8(__pyx_v_din_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_npy_uint8(__pyx_v_din_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "usb1208fs.pyx":102
+  /* "usb1208fs.pyx":124
  *             raise ValueError("Could not configure port.")
  * 
  *     def din(self, np.uint8_t port):             # <<<<<<<<<<<<<<
@@ -2199,7 +2399,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_6din(struct __pyx_obj_9usb1208fs
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":114
+/* "usb1208fs.pyx":136
  *         return din_value
  * 
  *     def dout(self, np.uint8_t port, np.uint8_t value):             # <<<<<<<<<<<<<<
@@ -2239,11 +2439,11 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_9dout(PyObject *__pyx_v_self, Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_value)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("dout", 1, 2, 2, 1); __PYX_ERR(0, 114, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dout", 1, 2, 2, 1); __PYX_ERR(0, 136, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dout") < 0)) __PYX_ERR(0, 114, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dout") < 0)) __PYX_ERR(0, 136, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2251,12 +2451,12 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_9dout(PyObject *__pyx_v_self, Py
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_port = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_port == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
-    __pyx_v_value = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_value == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
+    __pyx_v_port = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_port == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 136, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_value == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 136, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dout", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 114, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dout", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 136, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.dout", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2274,7 +2474,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_8dout(struct __pyx_obj_9usb1208f
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("dout", 0);
 
-  /* "usb1208fs.pyx":121
+  /* "usb1208fs.pyx":143
  *             value: value to write to the port
  *         """
  *         usbDOut_USB1208FS(self.udev, port, value)             # <<<<<<<<<<<<<<
@@ -2283,7 +2483,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_8dout(struct __pyx_obj_9usb1208f
  */
   usbDOut_USB1208FS(__pyx_v_self->udev, __pyx_v_port, __pyx_v_value);
 
-  /* "usb1208fs.pyx":114
+  /* "usb1208fs.pyx":136
  *         return din_value
  * 
  *     def dout(self, np.uint8_t port, np.uint8_t value):             # <<<<<<<<<<<<<<
@@ -2298,7 +2498,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_8dout(struct __pyx_obj_9usb1208f
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":123
+/* "usb1208fs.pyx":145
  *         usbDOut_USB1208FS(self.udev, port, value)
  * 
  *     def ain(self, np.uint8_t channel, np.uint8_t _range):             # <<<<<<<<<<<<<<
@@ -2338,11 +2538,11 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_11ain(PyObject *__pyx_v_self, Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_range_2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ain", 1, 2, 2, 1); __PYX_ERR(0, 123, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ain", 1, 2, 2, 1); __PYX_ERR(0, 145, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ain") < 0)) __PYX_ERR(0, 123, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ain") < 0)) __PYX_ERR(0, 145, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2350,12 +2550,12 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_11ain(PyObject *__pyx_v_self, Py
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_channel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_channel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 123, __pyx_L3_error)
-    __pyx_v__range = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v__range == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 123, __pyx_L3_error)
+    __pyx_v_channel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_channel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 145, __pyx_L3_error)
+    __pyx_v__range = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v__range == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 145, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ain", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 123, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ain", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 145, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.ain", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2374,7 +2574,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_10ain(struct __pyx_obj_9usb1208f
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("ain", 0);
 
-  /* "usb1208fs.pyx":131
+  /* "usb1208fs.pyx":153
  *             range:   the gain range (0-7)
  *         """
  *         return usbAIn_USB1208FS(self.udev, channel, _range)             # <<<<<<<<<<<<<<
@@ -2382,13 +2582,13 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_10ain(struct __pyx_obj_9usb1208f
  *     def aout(self, np.uint8_t channel, np.uint16_t value):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_short(usbAIn_USB1208FS(__pyx_v_self->udev, __pyx_v_channel, __pyx_v__range)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_short(usbAIn_USB1208FS(__pyx_v_self->udev, __pyx_v_channel, __pyx_v__range)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "usb1208fs.pyx":123
+  /* "usb1208fs.pyx":145
  *         usbDOut_USB1208FS(self.udev, port, value)
  * 
  *     def ain(self, np.uint8_t channel, np.uint8_t _range):             # <<<<<<<<<<<<<<
@@ -2407,7 +2607,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_10ain(struct __pyx_obj_9usb1208f
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":133
+/* "usb1208fs.pyx":155
  *         return usbAIn_USB1208FS(self.udev, channel, _range)
  * 
  *     def aout(self, np.uint8_t channel, np.uint16_t value):             # <<<<<<<<<<<<<<
@@ -2447,11 +2647,11 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_13aout(PyObject *__pyx_v_self, P
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_value)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aout", 1, 2, 2, 1); __PYX_ERR(0, 133, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aout", 1, 2, 2, 1); __PYX_ERR(0, 155, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aout") < 0)) __PYX_ERR(0, 133, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aout") < 0)) __PYX_ERR(0, 155, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2459,12 +2659,12 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_13aout(PyObject *__pyx_v_self, P
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_channel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_channel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
-    __pyx_v_value = __Pyx_PyInt_As_npy_uint16(values[1]); if (unlikely((__pyx_v_value == ((npy_uint16)-1)) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
+    __pyx_v_channel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_channel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 155, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyInt_As_npy_uint16(values[1]); if (unlikely((__pyx_v_value == ((npy_uint16)-1)) && PyErr_Occurred())) __PYX_ERR(0, 155, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("aout", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 133, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("aout", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 155, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.aout", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2482,7 +2682,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_12aout(struct __pyx_obj_9usb1208
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("aout", 0);
 
-  /* "usb1208fs.pyx":147
+  /* "usb1208fs.pyx":169
  *         value:   the value to write
  *         """
  *         usbAOut_USB1208FS(self.udev, channel, value)             # <<<<<<<<<<<<<<
@@ -2491,7 +2691,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_12aout(struct __pyx_obj_9usb1208
  */
   usbAOut_USB1208FS(__pyx_v_self->udev, __pyx_v_channel, __pyx_v_value);
 
-  /* "usb1208fs.pyx":133
+  /* "usb1208fs.pyx":155
  *         return usbAIn_USB1208FS(self.udev, channel, _range)
  * 
  *     def aout(self, np.uint8_t channel, np.uint16_t value):             # <<<<<<<<<<<<<<
@@ -2506,7 +2706,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_12aout(struct __pyx_obj_9usb1208
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":149
+/* "usb1208fs.pyx":171
  *         usbAOut_USB1208FS(self.udev, channel, value)
  * 
  *     def aoutScan(self, np.uint8_t lowchannel, np.uint8_t highchannel,             # <<<<<<<<<<<<<<
@@ -2555,29 +2755,29 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_15aoutScan(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_highchannel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 1); __PYX_ERR(0, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 1); __PYX_ERR(0, 171, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 2); __PYX_ERR(0, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 2); __PYX_ERR(0, 171, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 3); __PYX_ERR(0, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 3); __PYX_ERR(0, 171, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_options)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 4); __PYX_ERR(0, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, 4); __PYX_ERR(0, 171, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aoutScan") < 0)) __PYX_ERR(0, 149, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aoutScan") < 0)) __PYX_ERR(0, 171, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -2588,15 +2788,15 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_15aoutScan(PyObject *__pyx_v_sel
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_lowchannel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_lowchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L3_error)
-    __pyx_v_highchannel = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_highchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L3_error)
-    __pyx_v_count = __Pyx_PyInt_As_npy_uint32(values[2]); if (unlikely((__pyx_v_count == ((npy_uint32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L3_error)
-    __pyx_v_freq = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_freq == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L3_error)
-    __pyx_v_options = __Pyx_PyInt_As_npy_uint8(values[4]); if (unlikely((__pyx_v_options == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L3_error)
+    __pyx_v_lowchannel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_lowchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 171, __pyx_L3_error)
+    __pyx_v_highchannel = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_highchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 171, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyInt_As_npy_uint32(values[2]); if (unlikely((__pyx_v_count == ((npy_uint32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
+    __pyx_v_freq = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_freq == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
+    __pyx_v_options = __Pyx_PyInt_As_npy_uint8(values[4]); if (unlikely((__pyx_v_options == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 149, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("aoutScan", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 171, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.aoutScan", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2630,7 +2830,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("aoutScan", 0);
 
-  /* "usb1208fs.pyx":204
+  /* "usb1208fs.pyx":226
  * 
  *         cdef np.uint16_t * data = \
  *                 <np.uint16_t*>malloc(count * sizeof(np.uint16_t))             # <<<<<<<<<<<<<<
@@ -2639,7 +2839,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
   __pyx_v_data = ((__pyx_t_5numpy_uint16_t *)malloc((__pyx_v_count * (sizeof(__pyx_t_5numpy_uint16_t)))));
 
-  /* "usb1208fs.pyx":205
+  /* "usb1208fs.pyx":227
  *         cdef np.uint16_t * data = \
  *                 <np.uint16_t*>malloc(count * sizeof(np.uint16_t))
  *         if not data:             # <<<<<<<<<<<<<<
@@ -2649,16 +2849,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
   __pyx_t_1 = ((!(__pyx_v_data != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":206
+    /* "usb1208fs.pyx":228
  *                 <np.uint16_t*>malloc(count * sizeof(np.uint16_t))
  *         if not data:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cdef int i = 0
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 206, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 228, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":205
+    /* "usb1208fs.pyx":227
  *         cdef np.uint16_t * data = \
  *                 <np.uint16_t*>malloc(count * sizeof(np.uint16_t))
  *         if not data:             # <<<<<<<<<<<<<<
@@ -2667,7 +2867,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
   }
 
-  /* "usb1208fs.pyx":208
+  /* "usb1208fs.pyx":230
  *             raise MemoryError()
  * 
  *         cdef int i = 0             # <<<<<<<<<<<<<<
@@ -2676,7 +2876,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
   __pyx_v_i = 0;
 
-  /* "usb1208fs.pyx":209
+  /* "usb1208fs.pyx":231
  * 
  *         cdef int i = 0
  *         try:             # <<<<<<<<<<<<<<
@@ -2685,7 +2885,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
   /*try:*/ {
 
-    /* "usb1208fs.pyx":211
+    /* "usb1208fs.pyx":233
  *         try:
  *             if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
  *                     &freq, data, options) < 0:             # <<<<<<<<<<<<<<
@@ -2694,7 +2894,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
     __pyx_t_1 = ((usbAOutScan_USB1208FS(__pyx_v_self->udev, __pyx_v_lowchannel, __pyx_v_highchannel, __pyx_v_count, (&__pyx_v_freq), __pyx_v_data, __pyx_v_options) < 0) != 0);
 
-    /* "usb1208fs.pyx":210
+    /* "usb1208fs.pyx":232
  *         cdef int i = 0
  *         try:
  *             if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \             # <<<<<<<<<<<<<<
@@ -2703,20 +2903,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
     if (__pyx_t_1) {
 
-      /* "usb1208fs.pyx":212
+      /* "usb1208fs.pyx":234
  *             if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
  *                     &freq, data, options) < 0:
  *                 raise ValueError("Analog out scan failed, see C error message.")             # <<<<<<<<<<<<<<
  *             dataList = []
  *             for i in range(count):
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(0, 212, __pyx_L5_error)
+      __PYX_ERR(0, 234, __pyx_L5_error)
 
-      /* "usb1208fs.pyx":210
+      /* "usb1208fs.pyx":232
  *         cdef int i = 0
  *         try:
  *             if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \             # <<<<<<<<<<<<<<
@@ -2725,19 +2925,19 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
  */
     }
 
-    /* "usb1208fs.pyx":213
+    /* "usb1208fs.pyx":235
  *                     &freq, data, options) < 0:
  *                 raise ValueError("Analog out scan failed, see C error message.")
  *             dataList = []             # <<<<<<<<<<<<<<
  *             for i in range(count):
  *                 dataList.append(<int>data[i])
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L5_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_dataList = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "usb1208fs.pyx":214
+    /* "usb1208fs.pyx":236
  *                 raise ValueError("Analog out scan failed, see C error message.")
  *             dataList = []
  *             for i in range(count):             # <<<<<<<<<<<<<<
@@ -2748,20 +2948,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
     for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_i = __pyx_t_4;
 
-      /* "usb1208fs.pyx":215
+      /* "usb1208fs.pyx":237
  *             dataList = []
  *             for i in range(count):
  *                 dataList.append(<int>data[i])             # <<<<<<<<<<<<<<
  *             return dataList             #XXX
  * 
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_data[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_data[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 237, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 215, __pyx_L5_error)
+      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 237, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
 
-    /* "usb1208fs.pyx":216
+    /* "usb1208fs.pyx":238
  *             for i in range(count):
  *                 dataList.append(<int>data[i])
  *             return dataList             #XXX             # <<<<<<<<<<<<<<
@@ -2774,7 +2974,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
     goto __pyx_L4_return;
   }
 
-  /* "usb1208fs.pyx":219
+  /* "usb1208fs.pyx":241
  * 
  *         finally:
  *             free(data)             # <<<<<<<<<<<<<<
@@ -2825,7 +3025,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
     }
   }
 
-  /* "usb1208fs.pyx":149
+  /* "usb1208fs.pyx":171
  *         usbAOut_USB1208FS(self.udev, channel, value)
  * 
  *     def aoutScan(self, np.uint8_t lowchannel, np.uint8_t highchannel,             # <<<<<<<<<<<<<<
@@ -2845,7 +3045,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_14aoutScan(struct __pyx_obj_9usb
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":221
+/* "usb1208fs.pyx":243
  *             free(data)
  * 
  *     def aoutStop(self):             # <<<<<<<<<<<<<<
@@ -2872,7 +3072,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_16aoutStop(struct __pyx_obj_9usb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("aoutStop", 0);
 
-  /* "usb1208fs.pyx":226
+  /* "usb1208fs.pyx":248
  *         Unlikely to be used.
  *         """
  *         usbAOutStop_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -2881,7 +3081,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_16aoutStop(struct __pyx_obj_9usb
  */
   usbAOutStop_USB1208FS(__pyx_v_self->udev);
 
-  /* "usb1208fs.pyx":221
+  /* "usb1208fs.pyx":243
  *             free(data)
  * 
  *     def aoutStop(self):             # <<<<<<<<<<<<<<
@@ -2896,7 +3096,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_16aoutStop(struct __pyx_obj_9usb
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":228
+/* "usb1208fs.pyx":250
  *         usbAOutStop_USB1208FS(self.udev)
  * 
  *     def ainStop(self):             # <<<<<<<<<<<<<<
@@ -2923,7 +3123,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_18ainStop(struct __pyx_obj_9usb1
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("ainStop", 0);
 
-  /* "usb1208fs.pyx":233
+  /* "usb1208fs.pyx":255
  *         Unlikely to be used.
  *         """
  *         usbAInStop_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -2932,7 +3132,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_18ainStop(struct __pyx_obj_9usb1
  */
   usbAInStop_USB1208FS(__pyx_v_self->udev);
 
-  /* "usb1208fs.pyx":228
+  /* "usb1208fs.pyx":250
  *         usbAOutStop_USB1208FS(self.udev)
  * 
  *     def ainStop(self):             # <<<<<<<<<<<<<<
@@ -2947,7 +3147,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_18ainStop(struct __pyx_obj_9usb1
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":235
+/* "usb1208fs.pyx":257
  *         usbAInStop_USB1208FS(self.udev)
  * 
  *     def ainScan(self, np.uint8_t lowchannel, np.uint8_t highchannel,             # <<<<<<<<<<<<<<
@@ -2996,29 +3196,29 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_21ainScan(PyObject *__pyx_v_self
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_highchannel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 1); __PYX_ERR(0, 235, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 1); __PYX_ERR(0, 257, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 2); __PYX_ERR(0, 235, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 2); __PYX_ERR(0, 257, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 3); __PYX_ERR(0, 235, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 3); __PYX_ERR(0, 257, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_options)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 4); __PYX_ERR(0, 235, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, 4); __PYX_ERR(0, 257, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ainScan") < 0)) __PYX_ERR(0, 235, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ainScan") < 0)) __PYX_ERR(0, 257, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -3029,15 +3229,15 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_21ainScan(PyObject *__pyx_v_self
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_lowchannel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_lowchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 235, __pyx_L3_error)
-    __pyx_v_highchannel = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_highchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 235, __pyx_L3_error)
-    __pyx_v_count = __Pyx_PyInt_As_npy_uint32(values[2]); if (unlikely((__pyx_v_count == ((npy_uint32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 236, __pyx_L3_error)
-    __pyx_v_freq = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_freq == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 236, __pyx_L3_error)
-    __pyx_v_options = __Pyx_PyInt_As_npy_uint8(values[4]); if (unlikely((__pyx_v_options == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 236, __pyx_L3_error)
+    __pyx_v_lowchannel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_lowchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 257, __pyx_L3_error)
+    __pyx_v_highchannel = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_highchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 257, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyInt_As_npy_uint32(values[2]); if (unlikely((__pyx_v_count == ((npy_uint32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 258, __pyx_L3_error)
+    __pyx_v_freq = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_freq == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 258, __pyx_L3_error)
+    __pyx_v_options = __Pyx_PyInt_As_npy_uint8(values[4]); if (unlikely((__pyx_v_options == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 258, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 235, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ainScan", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 257, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.ainScan", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3071,7 +3271,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("ainScan", 0);
 
-  /* "usb1208fs.pyx":301
+  /* "usb1208fs.pyx":323
  *         For safety issue, I'll copy the result of scan to a python list
  *         """
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))             # <<<<<<<<<<<<<<
@@ -3080,7 +3280,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
   __pyx_v_data = ((__pyx_t_5numpy_int16_t *)malloc((__pyx_v_count * (sizeof(__pyx_t_5numpy_int16_t)))));
 
-  /* "usb1208fs.pyx":302
+  /* "usb1208fs.pyx":324
  *         """
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
  *         if not data:             # <<<<<<<<<<<<<<
@@ -3090,16 +3290,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
   __pyx_t_1 = ((!(__pyx_v_data != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":303
+    /* "usb1208fs.pyx":325
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
  *         if not data:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cdef int i = 0
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 303, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 325, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":302
+    /* "usb1208fs.pyx":324
  *         """
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
  *         if not data:             # <<<<<<<<<<<<<<
@@ -3108,7 +3308,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
   }
 
-  /* "usb1208fs.pyx":305
+  /* "usb1208fs.pyx":327
  *             raise MemoryError()
  * 
  *         cdef int i = 0             # <<<<<<<<<<<<<<
@@ -3117,7 +3317,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
   __pyx_v_i = 0;
 
-  /* "usb1208fs.pyx":306
+  /* "usb1208fs.pyx":328
  * 
  *         cdef int i = 0
  *         try:             # <<<<<<<<<<<<<<
@@ -3126,7 +3326,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
   /*try:*/ {
 
-    /* "usb1208fs.pyx":308
+    /* "usb1208fs.pyx":330
  *         try:
  *             if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
  *                     &freq, options, data) < 0:             # <<<<<<<<<<<<<<
@@ -3135,7 +3335,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
     __pyx_t_1 = ((usbAInScan_USB1208FS(__pyx_v_self->udev, __pyx_v_lowchannel, __pyx_v_highchannel, __pyx_v_count, (&__pyx_v_freq), __pyx_v_options, __pyx_v_data) < 0) != 0);
 
-    /* "usb1208fs.pyx":307
+    /* "usb1208fs.pyx":329
  *         cdef int i = 0
  *         try:
  *             if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \             # <<<<<<<<<<<<<<
@@ -3144,20 +3344,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
     if (__pyx_t_1) {
 
-      /* "usb1208fs.pyx":309
+      /* "usb1208fs.pyx":331
  *             if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
  *                     &freq, options, data) < 0:
  *                 raise ValueError("Analog in scan failed, see C error message.")             # <<<<<<<<<<<<<<
  *             dataList = []
  *             for i in range(count):
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 331, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(0, 309, __pyx_L5_error)
+      __PYX_ERR(0, 331, __pyx_L5_error)
 
-      /* "usb1208fs.pyx":307
+      /* "usb1208fs.pyx":329
  *         cdef int i = 0
  *         try:
  *             if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \             # <<<<<<<<<<<<<<
@@ -3166,19 +3366,19 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
  */
     }
 
-    /* "usb1208fs.pyx":310
+    /* "usb1208fs.pyx":332
  *                     &freq, options, data) < 0:
  *                 raise ValueError("Analog in scan failed, see C error message.")
  *             dataList = []             # <<<<<<<<<<<<<<
  *             for i in range(count):
  *                 dataList.append(<int>data[i])
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L5_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_dataList = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "usb1208fs.pyx":311
+    /* "usb1208fs.pyx":333
  *                 raise ValueError("Analog in scan failed, see C error message.")
  *             dataList = []
  *             for i in range(count):             # <<<<<<<<<<<<<<
@@ -3189,20 +3389,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
     for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_i = __pyx_t_4;
 
-      /* "usb1208fs.pyx":312
+      /* "usb1208fs.pyx":334
  *             dataList = []
  *             for i in range(count):
  *                 dataList.append(<int>data[i])             # <<<<<<<<<<<<<<
  *             return dataList             #XXX
  * 
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_data[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_data[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 334, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 312, __pyx_L5_error)
+      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 334, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
 
-    /* "usb1208fs.pyx":313
+    /* "usb1208fs.pyx":335
  *             for i in range(count):
  *                 dataList.append(<int>data[i])
  *             return dataList             #XXX             # <<<<<<<<<<<<<<
@@ -3215,7 +3415,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
     goto __pyx_L4_return;
   }
 
-  /* "usb1208fs.pyx":316
+  /* "usb1208fs.pyx":338
  * 
  *         finally:
  *             free(data)             # <<<<<<<<<<<<<<
@@ -3266,7 +3466,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
     }
   }
 
-  /* "usb1208fs.pyx":235
+  /* "usb1208fs.pyx":257
  *         usbAInStop_USB1208FS(self.udev)
  * 
  *     def ainScan(self, np.uint8_t lowchannel, np.uint8_t highchannel,             # <<<<<<<<<<<<<<
@@ -3286,7 +3486,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_20ainScan(struct __pyx_obj_9usb1
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":318
+/* "usb1208fs.pyx":340
  *             free(data)
  * 
  *     def ainScanSE(self, np.uint8_t lowchannel, np.uint8_t highchannel,             # <<<<<<<<<<<<<<
@@ -3335,29 +3535,29 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_23ainScanSE(PyObject *__pyx_v_se
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_highchannel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 1); __PYX_ERR(0, 318, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 1); __PYX_ERR(0, 340, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 2); __PYX_ERR(0, 318, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 2); __PYX_ERR(0, 340, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 3); __PYX_ERR(0, 318, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 3); __PYX_ERR(0, 340, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_options)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 4); __PYX_ERR(0, 318, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, 4); __PYX_ERR(0, 340, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ainScanSE") < 0)) __PYX_ERR(0, 318, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ainScanSE") < 0)) __PYX_ERR(0, 340, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -3368,15 +3568,15 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_23ainScanSE(PyObject *__pyx_v_se
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_lowchannel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_lowchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 318, __pyx_L3_error)
-    __pyx_v_highchannel = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_highchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 318, __pyx_L3_error)
-    __pyx_v_count = __Pyx_PyInt_As_npy_uint32(values[2]); if (unlikely((__pyx_v_count == ((npy_uint32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L3_error)
-    __pyx_v_freq = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_freq == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L3_error)
-    __pyx_v_options = __Pyx_PyInt_As_npy_uint8(values[4]); if (unlikely((__pyx_v_options == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 319, __pyx_L3_error)
+    __pyx_v_lowchannel = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_lowchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L3_error)
+    __pyx_v_highchannel = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_highchannel == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyInt_As_npy_uint32(values[2]); if (unlikely((__pyx_v_count == ((npy_uint32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 341, __pyx_L3_error)
+    __pyx_v_freq = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_freq == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 341, __pyx_L3_error)
+    __pyx_v_options = __Pyx_PyInt_As_npy_uint8(values[4]); if (unlikely((__pyx_v_options == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 341, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 318, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ainScanSE", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 340, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.ainScanSE", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3410,7 +3610,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("ainScanSE", 0);
 
-  /* "usb1208fs.pyx":331
+  /* "usb1208fs.pyx":353
  *         For safety issue, I'll copy the result of scan to a python list
  *         """
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))             # <<<<<<<<<<<<<<
@@ -3419,7 +3619,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
   __pyx_v_data = ((__pyx_t_5numpy_int16_t *)malloc((__pyx_v_count * (sizeof(__pyx_t_5numpy_int16_t)))));
 
-  /* "usb1208fs.pyx":332
+  /* "usb1208fs.pyx":354
  *         """
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
  *         if not data:             # <<<<<<<<<<<<<<
@@ -3429,16 +3629,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
   __pyx_t_1 = ((!(__pyx_v_data != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":333
+    /* "usb1208fs.pyx":355
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
  *         if not data:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cdef int i = 0
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 333, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 355, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":332
+    /* "usb1208fs.pyx":354
  *         """
  *         cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
  *         if not data:             # <<<<<<<<<<<<<<
@@ -3447,7 +3647,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
   }
 
-  /* "usb1208fs.pyx":335
+  /* "usb1208fs.pyx":357
  *             raise MemoryError()
  * 
  *         cdef int i = 0             # <<<<<<<<<<<<<<
@@ -3456,7 +3656,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
   __pyx_v_i = 0;
 
-  /* "usb1208fs.pyx":336
+  /* "usb1208fs.pyx":358
  * 
  *         cdef int i = 0
  *         try:             # <<<<<<<<<<<<<<
@@ -3465,7 +3665,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
   /*try:*/ {
 
-    /* "usb1208fs.pyx":338
+    /* "usb1208fs.pyx":360
  *         try:
  *             if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \
  *                     count, &freq, options, data) < 0:             # <<<<<<<<<<<<<<
@@ -3474,7 +3674,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
     __pyx_t_1 = ((usbAInScan_USB1208FS_SE(__pyx_v_self->udev, __pyx_v_lowchannel, __pyx_v_highchannel, __pyx_v_count, (&__pyx_v_freq), __pyx_v_options, __pyx_v_data) < 0) != 0);
 
-    /* "usb1208fs.pyx":337
+    /* "usb1208fs.pyx":359
  *         cdef int i = 0
  *         try:
  *             if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \             # <<<<<<<<<<<<<<
@@ -3483,20 +3683,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
     if (__pyx_t_1) {
 
-      /* "usb1208fs.pyx":339
+      /* "usb1208fs.pyx":361
  *             if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \
  *                     count, &freq, options, data) < 0:
  *                 raise ValueError("Analog in SE scan failed, see C error message.")             # <<<<<<<<<<<<<<
  * 
  *             dataList = []
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 339, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(0, 339, __pyx_L5_error)
+      __PYX_ERR(0, 361, __pyx_L5_error)
 
-      /* "usb1208fs.pyx":337
+      /* "usb1208fs.pyx":359
  *         cdef int i = 0
  *         try:
  *             if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \             # <<<<<<<<<<<<<<
@@ -3505,19 +3705,19 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
  */
     }
 
-    /* "usb1208fs.pyx":341
+    /* "usb1208fs.pyx":363
  *                 raise ValueError("Analog in SE scan failed, see C error message.")
  * 
  *             dataList = []             # <<<<<<<<<<<<<<
  *             for i in range(count):
  *                 dataList.append(<int>data[i])
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L5_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_dataList = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "usb1208fs.pyx":342
+    /* "usb1208fs.pyx":364
  * 
  *             dataList = []
  *             for i in range(count):             # <<<<<<<<<<<<<<
@@ -3528,20 +3728,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
     for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_i = __pyx_t_4;
 
-      /* "usb1208fs.pyx":343
+      /* "usb1208fs.pyx":365
  *             dataList = []
  *             for i in range(count):
  *                 dataList.append(<int>data[i])             # <<<<<<<<<<<<<<
  *             return dataList         #XXX
  * 
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_data[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_data[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 343, __pyx_L5_error)
+      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 365, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
 
-    /* "usb1208fs.pyx":344
+    /* "usb1208fs.pyx":366
  *             for i in range(count):
  *                 dataList.append(<int>data[i])
  *             return dataList         #XXX             # <<<<<<<<<<<<<<
@@ -3554,7 +3754,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
     goto __pyx_L4_return;
   }
 
-  /* "usb1208fs.pyx":347
+  /* "usb1208fs.pyx":369
  * 
  *         finally:
  *             free(data)             # <<<<<<<<<<<<<<
@@ -3605,7 +3805,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
     }
   }
 
-  /* "usb1208fs.pyx":318
+  /* "usb1208fs.pyx":340
  *             free(data)
  * 
  *     def ainScanSE(self, np.uint8_t lowchannel, np.uint8_t highchannel,             # <<<<<<<<<<<<<<
@@ -3625,7 +3825,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_22ainScanSE(struct __pyx_obj_9us
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":349
+/* "usb1208fs.pyx":371
  *             free(data)
  * 
  *     def aLoadQueue(self, np.uint8_t num, chan, gains):             # <<<<<<<<<<<<<<
@@ -3668,17 +3868,17 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_25aLoadQueue(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_chan)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aLoadQueue", 1, 3, 3, 1); __PYX_ERR(0, 349, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aLoadQueue", 1, 3, 3, 1); __PYX_ERR(0, 371, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_gains)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("aLoadQueue", 1, 3, 3, 2); __PYX_ERR(0, 349, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("aLoadQueue", 1, 3, 3, 2); __PYX_ERR(0, 371, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aLoadQueue") < 0)) __PYX_ERR(0, 349, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "aLoadQueue") < 0)) __PYX_ERR(0, 371, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3687,13 +3887,13 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_25aLoadQueue(PyObject *__pyx_v_s
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_num = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_num == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 349, __pyx_L3_error)
+    __pyx_v_num = __Pyx_PyInt_As_npy_uint8(values[0]); if (unlikely((__pyx_v_num == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 371, __pyx_L3_error)
     __pyx_v_chan = values[1];
     __pyx_v_gains = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("aLoadQueue", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 349, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("aLoadQueue", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 371, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.aLoadQueue", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3728,32 +3928,32 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
   PyObject *__pyx_t_14 = NULL;
   __Pyx_RefNannySetupContext("aLoadQueue", 0);
 
-  /* "usb1208fs.pyx":364
+  /* "usb1208fs.pyx":386
  *         gains {list} - list of gains
  *         """
  *         if len(chan) != len(gains):             # <<<<<<<<<<<<<<
  *             raise ValueError("length of chans and gains are not the same.")
  * 
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_chan); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 364, __pyx_L1_error)
-  __pyx_t_2 = PyObject_Length(__pyx_v_gains); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_chan); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_gains); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 386, __pyx_L1_error)
   __pyx_t_3 = ((__pyx_t_1 != __pyx_t_2) != 0);
   if (__pyx_t_3) {
 
-    /* "usb1208fs.pyx":365
+    /* "usb1208fs.pyx":387
  *         """
  *         if len(chan) != len(gains):
  *             raise ValueError("length of chans and gains are not the same.")             # <<<<<<<<<<<<<<
  * 
  *         cdef np.uint8_t * chanArr = \
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 365, __pyx_L1_error)
+    __PYX_ERR(0, 387, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":364
+    /* "usb1208fs.pyx":386
  *         gains {list} - list of gains
  *         """
  *         if len(chan) != len(gains):             # <<<<<<<<<<<<<<
@@ -3762,17 +3962,17 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
  */
   }
 
-  /* "usb1208fs.pyx":368
+  /* "usb1208fs.pyx":390
  * 
  *         cdef np.uint8_t * chanArr = \
  *             <np.uint8_t*>malloc(len(chan) * sizeof(np.uint8_t))             # <<<<<<<<<<<<<<
  *         if not chanArr:
  *             raise MemoryError()
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_chan); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 368, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_chan); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 390, __pyx_L1_error)
   __pyx_v_chanArr = ((__pyx_t_5numpy_uint8_t *)malloc((__pyx_t_2 * (sizeof(__pyx_t_5numpy_uint8_t)))));
 
-  /* "usb1208fs.pyx":369
+  /* "usb1208fs.pyx":391
  *         cdef np.uint8_t * chanArr = \
  *             <np.uint8_t*>malloc(len(chan) * sizeof(np.uint8_t))
  *         if not chanArr:             # <<<<<<<<<<<<<<
@@ -3782,16 +3982,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
   __pyx_t_3 = ((!(__pyx_v_chanArr != 0)) != 0);
   if (__pyx_t_3) {
 
-    /* "usb1208fs.pyx":370
+    /* "usb1208fs.pyx":392
  *             <np.uint8_t*>malloc(len(chan) * sizeof(np.uint8_t))
  *         if not chanArr:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  *         cdef np.uint8_t * gainArr = \
  *             <np.uint8_t*>malloc(len(gains) * sizeof(np.uint8_t))
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 370, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 392, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":369
+    /* "usb1208fs.pyx":391
  *         cdef np.uint8_t * chanArr = \
  *             <np.uint8_t*>malloc(len(chan) * sizeof(np.uint8_t))
  *         if not chanArr:             # <<<<<<<<<<<<<<
@@ -3800,17 +4000,17 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
  */
   }
 
-  /* "usb1208fs.pyx":372
+  /* "usb1208fs.pyx":394
  *             raise MemoryError()
  *         cdef np.uint8_t * gainArr = \
  *             <np.uint8_t*>malloc(len(gains) * sizeof(np.uint8_t))             # <<<<<<<<<<<<<<
  *         if not gainArr:
  *             raise MemoryError()
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_gains); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_gains); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 394, __pyx_L1_error)
   __pyx_v_gainArr = ((__pyx_t_5numpy_uint8_t *)malloc((__pyx_t_2 * (sizeof(__pyx_t_5numpy_uint8_t)))));
 
-  /* "usb1208fs.pyx":373
+  /* "usb1208fs.pyx":395
  *         cdef np.uint8_t * gainArr = \
  *             <np.uint8_t*>malloc(len(gains) * sizeof(np.uint8_t))
  *         if not gainArr:             # <<<<<<<<<<<<<<
@@ -3820,16 +4020,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
   __pyx_t_3 = ((!(__pyx_v_gainArr != 0)) != 0);
   if (__pyx_t_3) {
 
-    /* "usb1208fs.pyx":374
+    /* "usb1208fs.pyx":396
  *             <np.uint8_t*>malloc(len(gains) * sizeof(np.uint8_t))
  *         if not gainArr:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cdef int i
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 374, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 396, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":373
+    /* "usb1208fs.pyx":395
  *         cdef np.uint8_t * gainArr = \
  *             <np.uint8_t*>malloc(len(gains) * sizeof(np.uint8_t))
  *         if not gainArr:             # <<<<<<<<<<<<<<
@@ -3838,7 +4038,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
  */
   }
 
-  /* "usb1208fs.pyx":377
+  /* "usb1208fs.pyx":399
  * 
  *         cdef int i
  *         try:             # <<<<<<<<<<<<<<
@@ -3847,45 +4047,45 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
  */
   /*try:*/ {
 
-    /* "usb1208fs.pyx":378
+    /* "usb1208fs.pyx":400
  *         cdef int i
  *         try:
  *             for i in range(len(chan)):             # <<<<<<<<<<<<<<
  *                 chanArr[i] = <np.uint8_t>chan[i]
  *                 gainArr[i] = <np.uint8_t>gains[i]
  */
-    __pyx_t_2 = PyObject_Length(__pyx_v_chan); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 378, __pyx_L7_error)
+    __pyx_t_2 = PyObject_Length(__pyx_v_chan); if (unlikely(__pyx_t_2 == -1)) __PYX_ERR(0, 400, __pyx_L7_error)
     for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_2; __pyx_t_5+=1) {
       __pyx_v_i = __pyx_t_5;
 
-      /* "usb1208fs.pyx":379
+      /* "usb1208fs.pyx":401
  *         try:
  *             for i in range(len(chan)):
  *                 chanArr[i] = <np.uint8_t>chan[i]             # <<<<<<<<<<<<<<
  *                 gainArr[i] = <np.uint8_t>gains[i]
  * 
  */
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_chan, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L7_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_chan, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 401, __pyx_L7_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_PyInt_As_npy_uint8(__pyx_t_4); if (unlikely((__pyx_t_6 == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 379, __pyx_L7_error)
+      __pyx_t_6 = __Pyx_PyInt_As_npy_uint8(__pyx_t_4); if (unlikely((__pyx_t_6 == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 401, __pyx_L7_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       (__pyx_v_chanArr[__pyx_v_i]) = ((__pyx_t_5numpy_uint8_t)__pyx_t_6);
 
-      /* "usb1208fs.pyx":380
+      /* "usb1208fs.pyx":402
  *             for i in range(len(chan)):
  *                 chanArr[i] = <np.uint8_t>chan[i]
  *                 gainArr[i] = <np.uint8_t>gains[i]             # <<<<<<<<<<<<<<
  * 
  *             usbALoadQueue_USB1208FS(self.udev, num, chanArr, gainArr)
  */
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_gains, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 380, __pyx_L7_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_gains, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L7_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_PyInt_As_npy_uint8(__pyx_t_4); if (unlikely((__pyx_t_6 == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 380, __pyx_L7_error)
+      __pyx_t_6 = __Pyx_PyInt_As_npy_uint8(__pyx_t_4); if (unlikely((__pyx_t_6 == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L7_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       (__pyx_v_gainArr[__pyx_v_i]) = ((__pyx_t_5numpy_uint8_t)__pyx_t_6);
     }
 
-    /* "usb1208fs.pyx":382
+    /* "usb1208fs.pyx":404
  *                 gainArr[i] = <np.uint8_t>gains[i]
  * 
  *             usbALoadQueue_USB1208FS(self.udev, num, chanArr, gainArr)             # <<<<<<<<<<<<<<
@@ -3895,7 +4095,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
     usbALoadQueue_USB1208FS(__pyx_v_self->udev, __pyx_v_num, __pyx_v_chanArr, __pyx_v_gainArr);
   }
 
-  /* "usb1208fs.pyx":385
+  /* "usb1208fs.pyx":407
  * 
  *         finally:
  *             free(chanArr)             # <<<<<<<<<<<<<<
@@ -3906,7 +4106,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
     /*normal exit:*/{
       free(__pyx_v_chanArr);
 
-      /* "usb1208fs.pyx":386
+      /* "usb1208fs.pyx":408
  *         finally:
  *             free(chanArr)
  *             free(gainArr)             # <<<<<<<<<<<<<<
@@ -3933,7 +4133,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
       __pyx_t_5 = __pyx_lineno; __pyx_t_7 = __pyx_clineno; __pyx_t_8 = __pyx_filename;
       {
 
-        /* "usb1208fs.pyx":385
+        /* "usb1208fs.pyx":407
  * 
  *         finally:
  *             free(chanArr)             # <<<<<<<<<<<<<<
@@ -3942,7 +4142,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
  */
         free(__pyx_v_chanArr);
 
-        /* "usb1208fs.pyx":386
+        /* "usb1208fs.pyx":408
  *         finally:
  *             free(chanArr)
  *             free(gainArr)             # <<<<<<<<<<<<<<
@@ -3969,7 +4169,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
     __pyx_L8:;
   }
 
-  /* "usb1208fs.pyx":349
+  /* "usb1208fs.pyx":371
  *             free(data)
  * 
  *     def aLoadQueue(self, np.uint8_t num, chan, gains):             # <<<<<<<<<<<<<<
@@ -3990,7 +4190,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_24aLoadQueue(struct __pyx_obj_9u
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":388
+/* "usb1208fs.pyx":410
  *             free(gainArr)
  * 
  *     def initCounter(self):             # <<<<<<<<<<<<<<
@@ -4017,7 +4217,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_26initCounter(struct __pyx_obj_9
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("initCounter", 0);
 
-  /* "usb1208fs.pyx":392
+  /* "usb1208fs.pyx":414
  *         This command initializes the event counter and resets the count to zero.
  *         """
  *         usbInitCounter_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -4026,7 +4226,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_26initCounter(struct __pyx_obj_9
  */
   usbInitCounter_USB1208FS(__pyx_v_self->udev);
 
-  /* "usb1208fs.pyx":388
+  /* "usb1208fs.pyx":410
  *             free(gainArr)
  * 
  *     def initCounter(self):             # <<<<<<<<<<<<<<
@@ -4041,7 +4241,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_26initCounter(struct __pyx_obj_9
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":394
+/* "usb1208fs.pyx":416
  *         usbInitCounter_USB1208FS(self.udev)
  * 
  *     def readCounter(self):             # <<<<<<<<<<<<<<
@@ -4069,7 +4269,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_28readCounter(struct __pyx_obj_9
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("readCounter", 0);
 
-  /* "usb1208fs.pyx":400
+  /* "usb1208fs.pyx":422
  *         the CTR pin on the screw terminal of the device.
  *         """
  *         return <int>usbReadCounter_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -4077,13 +4277,13 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_28readCounter(struct __pyx_obj_9
  *     def readMemory(self, np.uint16_t address, np.uint8_t count):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((int)usbReadCounter_USB1208FS(__pyx_v_self->udev))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(((int)usbReadCounter_USB1208FS(__pyx_v_self->udev))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "usb1208fs.pyx":394
+  /* "usb1208fs.pyx":416
  *         usbInitCounter_USB1208FS(self.udev)
  * 
  *     def readCounter(self):             # <<<<<<<<<<<<<<
@@ -4102,7 +4302,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_28readCounter(struct __pyx_obj_9
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":402
+/* "usb1208fs.pyx":424
  *         return <int>usbReadCounter_USB1208FS(self.udev)
  * 
  *     def readMemory(self, np.uint16_t address, np.uint8_t count):             # <<<<<<<<<<<<<<
@@ -4142,11 +4342,11 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_31readMemory(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("readMemory", 1, 2, 2, 1); __PYX_ERR(0, 402, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("readMemory", 1, 2, 2, 1); __PYX_ERR(0, 424, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "readMemory") < 0)) __PYX_ERR(0, 402, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "readMemory") < 0)) __PYX_ERR(0, 424, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4154,12 +4354,12 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_31readMemory(PyObject *__pyx_v_s
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_address = __Pyx_PyInt_As_npy_uint16(values[0]); if (unlikely((__pyx_v_address == ((npy_uint16)-1)) && PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L3_error)
-    __pyx_v_count = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_count == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L3_error)
+    __pyx_v_address = __Pyx_PyInt_As_npy_uint16(values[0]); if (unlikely((__pyx_v_address == ((npy_uint16)-1)) && PyErr_Occurred())) __PYX_ERR(0, 424, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_count == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 424, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("readMemory", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 402, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("readMemory", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 424, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.readMemory", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4193,7 +4393,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("readMemory", 0);
 
-  /* "usb1208fs.pyx":416
+  /* "usb1208fs.pyx":438
  *         """
  *         cdef np.uint8_t * memory = \
  *                 <np.uint8_t*>malloc(count * sizeof(np.uint8_t))             # <<<<<<<<<<<<<<
@@ -4202,7 +4402,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
  */
   __pyx_v_memory = ((__pyx_t_5numpy_uint8_t *)malloc((__pyx_v_count * (sizeof(__pyx_t_5numpy_uint8_t)))));
 
-  /* "usb1208fs.pyx":417
+  /* "usb1208fs.pyx":439
  *         cdef np.uint8_t * memory = \
  *                 <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
  *         if not memory:             # <<<<<<<<<<<<<<
@@ -4212,16 +4412,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
   __pyx_t_1 = ((!(__pyx_v_memory != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":418
+    /* "usb1208fs.pyx":440
  *                 <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
  *         if not memory:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cdef int i = 0
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 418, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 440, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":417
+    /* "usb1208fs.pyx":439
  *         cdef np.uint8_t * memory = \
  *                 <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
  *         if not memory:             # <<<<<<<<<<<<<<
@@ -4230,7 +4430,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
  */
   }
 
-  /* "usb1208fs.pyx":420
+  /* "usb1208fs.pyx":442
  *             raise MemoryError()
  * 
  *         cdef int i = 0             # <<<<<<<<<<<<<<
@@ -4239,7 +4439,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
  */
   __pyx_v_i = 0;
 
-  /* "usb1208fs.pyx":422
+  /* "usb1208fs.pyx":444
  *         cdef int i = 0
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -4248,7 +4448,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
  */
   /*try:*/ {
 
-    /* "usb1208fs.pyx":423
+    /* "usb1208fs.pyx":445
  * 
  *         try:
  *             usbReadMemory_USB1208FS(self.udev, address, count, memory)             # <<<<<<<<<<<<<<
@@ -4257,19 +4457,19 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
  */
     usbReadMemory_USB1208FS(__pyx_v_self->udev, __pyx_v_address, __pyx_v_count, __pyx_v_memory);
 
-    /* "usb1208fs.pyx":424
+    /* "usb1208fs.pyx":446
  *         try:
  *             usbReadMemory_USB1208FS(self.udev, address, count, memory)
  *             dataList = []             # <<<<<<<<<<<<<<
  *             for i in range(count):
  *                 dataList.append(<int>memory[i])
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 424, __pyx_L5_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 446, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_dataList = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "usb1208fs.pyx":425
+    /* "usb1208fs.pyx":447
  *             usbReadMemory_USB1208FS(self.udev, address, count, memory)
  *             dataList = []
  *             for i in range(count):             # <<<<<<<<<<<<<<
@@ -4280,20 +4480,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
     for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_i = __pyx_t_4;
 
-      /* "usb1208fs.pyx":426
+      /* "usb1208fs.pyx":448
  *             dataList = []
  *             for i in range(count):
  *                 dataList.append(<int>memory[i])             # <<<<<<<<<<<<<<
  *             return dataList         #XXX
  * 
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_memory[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 426, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyInt_From_int(((int)(__pyx_v_memory[__pyx_v_i]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 448, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 426, __pyx_L5_error)
+      __pyx_t_5 = __Pyx_PyList_Append(__pyx_v_dataList, __pyx_t_2); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 448, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
 
-    /* "usb1208fs.pyx":427
+    /* "usb1208fs.pyx":449
  *             for i in range(count):
  *                 dataList.append(<int>memory[i])
  *             return dataList         #XXX             # <<<<<<<<<<<<<<
@@ -4306,7 +4506,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
     goto __pyx_L4_return;
   }
 
-  /* "usb1208fs.pyx":430
+  /* "usb1208fs.pyx":452
  * 
  *         finally:
  *             free(memory)             # <<<<<<<<<<<<<<
@@ -4357,7 +4557,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
     }
   }
 
-  /* "usb1208fs.pyx":402
+  /* "usb1208fs.pyx":424
  *         return <int>usbReadCounter_USB1208FS(self.udev)
  * 
  *     def readMemory(self, np.uint16_t address, np.uint8_t count):             # <<<<<<<<<<<<<<
@@ -4377,7 +4577,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_30readMemory(struct __pyx_obj_9u
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":432
+/* "usb1208fs.pyx":454
  *             free(memory)
  * 
  *     def writeMemory(self, np.uint16_t address, np.uint8_t count, data):             # <<<<<<<<<<<<<<
@@ -4420,17 +4620,17 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_33writeMemory(PyObject *__pyx_v_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("writeMemory", 1, 3, 3, 1); __PYX_ERR(0, 432, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("writeMemory", 1, 3, 3, 1); __PYX_ERR(0, 454, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_data)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("writeMemory", 1, 3, 3, 2); __PYX_ERR(0, 432, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("writeMemory", 1, 3, 3, 2); __PYX_ERR(0, 454, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "writeMemory") < 0)) __PYX_ERR(0, 432, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "writeMemory") < 0)) __PYX_ERR(0, 454, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4439,13 +4639,13 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_33writeMemory(PyObject *__pyx_v_
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_address = __Pyx_PyInt_As_npy_uint16(values[0]); if (unlikely((__pyx_v_address == ((npy_uint16)-1)) && PyErr_Occurred())) __PYX_ERR(0, 432, __pyx_L3_error)
-    __pyx_v_count = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_count == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 432, __pyx_L3_error)
+    __pyx_v_address = __Pyx_PyInt_As_npy_uint16(values[0]); if (unlikely((__pyx_v_address == ((npy_uint16)-1)) && PyErr_Occurred())) __PYX_ERR(0, 454, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyInt_As_npy_uint8(values[1]); if (unlikely((__pyx_v_count == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 454, __pyx_L3_error)
     __pyx_v_data = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("writeMemory", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 432, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("writeMemory", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 454, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("usb1208fs.USB1208FS.writeMemory", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4478,7 +4678,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("writeMemory", 0);
 
-  /* "usb1208fs.pyx":444
+  /* "usb1208fs.pyx":466
  *         """
  *         cdef np.uint8_t * dataArr = \
  *             <np.uint8_t*>malloc(count * sizeof(np.uint8_t))             # <<<<<<<<<<<<<<
@@ -4487,7 +4687,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
  */
   __pyx_v_dataArr = ((__pyx_t_5numpy_uint8_t *)malloc((__pyx_v_count * (sizeof(__pyx_t_5numpy_uint8_t)))));
 
-  /* "usb1208fs.pyx":445
+  /* "usb1208fs.pyx":467
  *         cdef np.uint8_t * dataArr = \
  *             <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
  *         if not dataArr:             # <<<<<<<<<<<<<<
@@ -4497,16 +4697,16 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
   __pyx_t_1 = ((!(__pyx_v_dataArr != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":446
+    /* "usb1208fs.pyx":468
  *             <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
  *         if not dataArr:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *         cdef int i
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 446, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 468, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":445
+    /* "usb1208fs.pyx":467
  *         cdef np.uint8_t * dataArr = \
  *             <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
  *         if not dataArr:             # <<<<<<<<<<<<<<
@@ -4515,7 +4715,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
  */
   }
 
-  /* "usb1208fs.pyx":449
+  /* "usb1208fs.pyx":471
  * 
  *         cdef int i
  *         try:             # <<<<<<<<<<<<<<
@@ -4524,7 +4724,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
  */
   /*try:*/ {
 
-    /* "usb1208fs.pyx":450
+    /* "usb1208fs.pyx":472
  *         cdef int i
  *         try:
  *             for i in range(count):             # <<<<<<<<<<<<<<
@@ -4535,21 +4735,21 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
     for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
       __pyx_v_i = __pyx_t_3;
 
-      /* "usb1208fs.pyx":451
+      /* "usb1208fs.pyx":473
  *         try:
  *             for i in range(count):
  *                 dataArr[i] = data[i]             # <<<<<<<<<<<<<<
  * 
  *             if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:
  */
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_data, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 451, __pyx_L5_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_data, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 473, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __Pyx_PyInt_As_npy_uint8(__pyx_t_4); if (unlikely((__pyx_t_5 == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 451, __pyx_L5_error)
+      __pyx_t_5 = __Pyx_PyInt_As_npy_uint8(__pyx_t_4); if (unlikely((__pyx_t_5 == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 473, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       (__pyx_v_dataArr[__pyx_v_i]) = __pyx_t_5;
     }
 
-    /* "usb1208fs.pyx":453
+    /* "usb1208fs.pyx":475
  *                 dataArr[i] = data[i]
  * 
  *             if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:             # <<<<<<<<<<<<<<
@@ -4559,20 +4759,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
     __pyx_t_1 = ((usbWriteMemory_USB1208FS(__pyx_v_self->udev, __pyx_v_address, __pyx_v_count, __pyx_v_dataArr) < 0) != 0);
     if (__pyx_t_1) {
 
-      /* "usb1208fs.pyx":454
+      /* "usb1208fs.pyx":476
  * 
  *             if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:
  *                 raise ValueError("Could not write to memory.")             # <<<<<<<<<<<<<<
  * 
  *         finally:
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 454, __pyx_L5_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __PYX_ERR(0, 454, __pyx_L5_error)
+      __PYX_ERR(0, 476, __pyx_L5_error)
 
-      /* "usb1208fs.pyx":453
+      /* "usb1208fs.pyx":475
  *                 dataArr[i] = data[i]
  * 
  *             if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:             # <<<<<<<<<<<<<<
@@ -4582,7 +4782,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
     }
   }
 
-  /* "usb1208fs.pyx":457
+  /* "usb1208fs.pyx":479
  * 
  *         finally:
  *             free(dataArr)             # <<<<<<<<<<<<<<
@@ -4630,7 +4830,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
     __pyx_L6:;
   }
 
-  /* "usb1208fs.pyx":432
+  /* "usb1208fs.pyx":454
  *             free(memory)
  * 
  *     def writeMemory(self, np.uint16_t address, np.uint8_t count, data):             # <<<<<<<<<<<<<<
@@ -4651,7 +4851,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_32writeMemory(struct __pyx_obj_9
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":459
+/* "usb1208fs.pyx":481
  *             free(dataArr)
  * 
  *     def blink(self):             # <<<<<<<<<<<<<<
@@ -4678,7 +4878,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_34blink(struct __pyx_obj_9usb120
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("blink", 0);
 
-  /* "usb1208fs.pyx":463
+  /* "usb1208fs.pyx":485
  *         blinks the LED of USB device
  *         """
  *         usbBlink_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -4687,7 +4887,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_34blink(struct __pyx_obj_9usb120
  */
   usbBlink_USB1208FS(__pyx_v_self->udev);
 
-  /* "usb1208fs.pyx":459
+  /* "usb1208fs.pyx":481
  *             free(dataArr)
  * 
  *     def blink(self):             # <<<<<<<<<<<<<<
@@ -4702,7 +4902,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_34blink(struct __pyx_obj_9usb120
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":465
+/* "usb1208fs.pyx":487
  *         usbBlink_USB1208FS(self.udev)
  * 
  *     def reset(self):             # <<<<<<<<<<<<<<
@@ -4729,7 +4929,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_36reset(struct __pyx_obj_9usb120
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("reset", 0);
 
-  /* "usb1208fs.pyx":470
+  /* "usb1208fs.pyx":492
  *         The device disconnects from the USB bus and resets its microcontroller.
  *         """
  *         usbReset_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -4738,7 +4938,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_36reset(struct __pyx_obj_9usb120
  */
   usbReset_USB1208FS(__pyx_v_self->udev);
 
-  /* "usb1208fs.pyx":465
+  /* "usb1208fs.pyx":487
  *         usbBlink_USB1208FS(self.udev)
  * 
  *     def reset(self):             # <<<<<<<<<<<<<<
@@ -4753,7 +4953,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_36reset(struct __pyx_obj_9usb120
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":472
+/* "usb1208fs.pyx":494
  *         usbReset_USB1208FS(self.udev)
  * 
  *     def getStatus(self):             # <<<<<<<<<<<<<<
@@ -4781,7 +4981,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_38getStatus(struct __pyx_obj_9us
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("getStatus", 0);
 
-  /* "usb1208fs.pyx":476
+  /* "usb1208fs.pyx":498
  *         This command retrieves the status of the device.
  *         """
  *         return <int>usbGetStatus_USB1208FS(self.udev)             # <<<<<<<<<<<<<<
@@ -4789,13 +4989,13 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_38getStatus(struct __pyx_obj_9us
  *     def setTrigger(self, np.uint8_t _type):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((int)usbGetStatus_USB1208FS(__pyx_v_self->udev))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 476, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(((int)usbGetStatus_USB1208FS(__pyx_v_self->udev))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "usb1208fs.pyx":472
+  /* "usb1208fs.pyx":494
  *         usbReset_USB1208FS(self.udev)
  * 
  *     def getStatus(self):             # <<<<<<<<<<<<<<
@@ -4814,7 +5014,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_38getStatus(struct __pyx_obj_9us
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":478
+/* "usb1208fs.pyx":500
  *         return <int>usbGetStatus_USB1208FS(self.udev)
  * 
  *     def setTrigger(self, np.uint8_t _type):             # <<<<<<<<<<<<<<
@@ -4831,7 +5031,7 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_41setTrigger(PyObject *__pyx_v_s
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("setTrigger (wrapper)", 0);
   assert(__pyx_arg__type); {
-    __pyx_v__type = __Pyx_PyInt_As_npy_uint8(__pyx_arg__type); if (unlikely((__pyx_v__type == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 478, __pyx_L3_error)
+    __pyx_v__type = __Pyx_PyInt_As_npy_uint8(__pyx_arg__type); if (unlikely((__pyx_v__type == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 500, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4851,7 +5051,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_40setTrigger(struct __pyx_obj_9u
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("setTrigger", 0);
 
-  /* "usb1208fs.pyx":490
+  /* "usb1208fs.pyx":512
  *             0 = external trigger falling edge, 1 = external trigger rising edge
  *         """
  *         usbSetTrigger_USB1208FS(self.udev, _type)             # <<<<<<<<<<<<<<
@@ -4860,7 +5060,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_40setTrigger(struct __pyx_obj_9u
  */
   usbSetTrigger_USB1208FS(__pyx_v_self->udev, __pyx_v__type);
 
-  /* "usb1208fs.pyx":478
+  /* "usb1208fs.pyx":500
  *         return <int>usbGetStatus_USB1208FS(self.udev)
  * 
  *     def setTrigger(self, np.uint8_t _type):             # <<<<<<<<<<<<<<
@@ -4875,7 +5075,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_40setTrigger(struct __pyx_obj_9u
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":492
+/* "usb1208fs.pyx":514
  *         usbSetTrigger_USB1208FS(self.udev, _type)
  * 
  *     def setSync(self, np.uint8_t _type):             # <<<<<<<<<<<<<<
@@ -4892,7 +5092,7 @@ static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_43setSync(PyObject *__pyx_v_self
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("setSync (wrapper)", 0);
   assert(__pyx_arg__type); {
-    __pyx_v__type = __Pyx_PyInt_As_npy_uint8(__pyx_arg__type); if (unlikely((__pyx_v__type == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 492, __pyx_L3_error)
+    __pyx_v__type = __Pyx_PyInt_As_npy_uint8(__pyx_arg__type); if (unlikely((__pyx_v__type == ((npy_uint8)-1)) && PyErr_Occurred())) __PYX_ERR(0, 514, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4912,7 +5112,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_42setSync(struct __pyx_obj_9usb1
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("setSync", 0);
 
-  /* "usb1208fs.pyx":515
+  /* "usb1208fs.pyx":537
  *         type: 0 = master, 1 = slave
  *         """
  *         usbSetSync_USB1208FS(self.udev, _type)             # <<<<<<<<<<<<<<
@@ -4921,7 +5121,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_42setSync(struct __pyx_obj_9usb1
  */
   usbSetSync_USB1208FS(__pyx_v_self->udev, __pyx_v__type);
 
-  /* "usb1208fs.pyx":492
+  /* "usb1208fs.pyx":514
  *         usbSetTrigger_USB1208FS(self.udev, _type)
  * 
  *     def setSync(self, np.uint8_t _type):             # <<<<<<<<<<<<<<
@@ -4936,7 +5136,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_42setSync(struct __pyx_obj_9usb1
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":517
+/* "usb1208fs.pyx":539
  *         usbSetSync_USB1208FS(self.udev, _type)
  * 
  *     def _getAll(self):             # <<<<<<<<<<<<<<
@@ -4964,20 +5164,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_44_getAll(CYTHON_UNUSED struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("_getAll", 0);
 
-  /* "usb1208fs.pyx":526
+  /* "usb1208fs.pyx":548
  *         XXX: Returns: {list} - all data from all ports
  *         """
  *         raise NotImplementedError("Currently not supported")             # <<<<<<<<<<<<<<
  * 
  *     def init(self):
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __PYX_ERR(0, 526, __pyx_L1_error)
+  __PYX_ERR(0, 548, __pyx_L1_error)
 
-  /* "usb1208fs.pyx":517
+  /* "usb1208fs.pyx":539
  *         usbSetSync_USB1208FS(self.udev, _type)
  * 
  *     def _getAll(self):             # <<<<<<<<<<<<<<
@@ -4995,7 +5195,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_44_getAll(CYTHON_UNUSED struct _
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":528
+/* "usb1208fs.pyx":550
  *         raise NotImplementedError("Currently not supported")
  * 
  *     def init(self):             # <<<<<<<<<<<<<<
@@ -5024,7 +5224,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_46init(struct __pyx_obj_9usb1208
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "usb1208fs.pyx":534
+  /* "usb1208fs.pyx":556
  *         Should not be used in user code.
  *         """
  *         if init_USB1208FS(self.udev) < 0:             # <<<<<<<<<<<<<<
@@ -5034,20 +5234,20 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_46init(struct __pyx_obj_9usb1208
   __pyx_t_1 = ((init_USB1208FS(__pyx_v_self->udev) < 0) != 0);
   if (__pyx_t_1) {
 
-    /* "usb1208fs.pyx":535
+    /* "usb1208fs.pyx":557
  *         """
  *         if init_USB1208FS(self.udev) < 0:
  *             raise ValueError("Failed to initialize USB1208FS.")             # <<<<<<<<<<<<<<
  * 
- *     @staticmethod
+ * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 535, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 557, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 535, __pyx_L1_error)
+    __PYX_ERR(0, 557, __pyx_L1_error)
 
-    /* "usb1208fs.pyx":534
+    /* "usb1208fs.pyx":556
  *         Should not be used in user code.
  *         """
  *         if init_USB1208FS(self.udev) < 0:             # <<<<<<<<<<<<<<
@@ -5056,7 +5256,7 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_46init(struct __pyx_obj_9usb1208
  */
   }
 
-  /* "usb1208fs.pyx":528
+  /* "usb1208fs.pyx":550
  *         raise NotImplementedError("Currently not supported")
  * 
  *     def init(self):             # <<<<<<<<<<<<<<
@@ -5077,234 +5277,6 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_46init(struct __pyx_obj_9usb1208
   return __pyx_r;
 }
 
-/* "usb1208fs.pyx":538
- * 
- *     @staticmethod
- *     def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
- *         """Wraps volts_FS():
- *         converts signed short value to volts for Differential Mode
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_49toVoltsFS(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_9usb1208fs_9USB1208FS_48toVoltsFS[] = "Wraps volts_FS():\n        converts signed short value to volts for Differential Mode\n        ";
-static PyMethodDef __pyx_mdef_9usb1208fs_9USB1208FS_49toVoltsFS = {"toVoltsFS", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_49toVoltsFS, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9usb1208fs_9USB1208FS_48toVoltsFS};
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_49toVoltsFS(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  int __pyx_v_gain;
-  int __pyx_v_num;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("toVoltsFS (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_gain,&__pyx_n_s_num,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_gain)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_num)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("toVoltsFS", 1, 2, 2, 1); __PYX_ERR(0, 538, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toVoltsFS") < 0)) __PYX_ERR(0, 538, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_gain = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_gain == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 538, __pyx_L3_error)
-    __pyx_v_num = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_num == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 538, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("toVoltsFS", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 538, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("usb1208fs.USB1208FS.toVoltsFS", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9usb1208fs_9USB1208FS_48toVoltsFS(__pyx_v_gain, __pyx_v_num);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_48toVoltsFS(int __pyx_v_gain, int __pyx_v_num) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("toVoltsFS", 0);
-
-  /* "usb1208fs.pyx":542
- *         converts signed short value to volts for Differential Mode
- *         """
- *         return <float>volts_FS(gain, num)             # <<<<<<<<<<<<<<
- * 
- *     @staticmethod
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(((float)volts_FS(__pyx_v_gain, __pyx_v_num))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 542, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "usb1208fs.pyx":538
- * 
- *     @staticmethod
- *     def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
- *         """Wraps volts_FS():
- *         converts signed short value to volts for Differential Mode
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("usb1208fs.USB1208FS.toVoltsFS", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "usb1208fs.pyx":545
- * 
- *     @staticmethod
- *     def toVoltsSE(int num):             # <<<<<<<<<<<<<<
- *         """ Same as volts_SE, rewritten in cython
- * 
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_51toVoltsSE(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_9usb1208fs_9USB1208FS_50toVoltsSE[] = " Same as volts_SE, rewritten in cython\n\n        Parameters: \n        num {short} - 16-bit number read by DAQ\n\n        Returns: {np.float32_t} read value in volts\n        ";
-static PyMethodDef __pyx_mdef_9usb1208fs_9USB1208FS_51toVoltsSE = {"toVoltsSE", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_51toVoltsSE, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9usb1208fs_9USB1208FS_50toVoltsSE};
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_51toVoltsSE(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  int __pyx_v_num;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("toVoltsSE (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_num,0};
-    PyObject* values[1] = {0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_num)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "toVoltsSE") < 0)) __PYX_ERR(0, 545, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-    }
-    __pyx_v_num = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_num == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 545, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("toVoltsSE", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 545, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("usb1208fs.USB1208FS.toVoltsSE", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9usb1208fs_9USB1208FS_50toVoltsSE(__pyx_v_num);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_50toVoltsSE(int __pyx_v_num) {
-  __pyx_t_5numpy_float32_t __pyx_v_volt;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("toVoltsSE", 0);
-
-  /* "usb1208fs.pyx":553
- *         Returns: {np.float32_t} read value in volts
- *         """
- *         cdef np.float32_t volt = 0.0             # <<<<<<<<<<<<<<
- *         volt = num * 10.0 / 0x7fff
- *         return <float>volt
- */
-  __pyx_v_volt = 0.0;
-
-  /* "usb1208fs.pyx":554
- *         """
- *         cdef np.float32_t volt = 0.0
- *         volt = num * 10.0 / 0x7fff             # <<<<<<<<<<<<<<
- *         return <float>volt
- * 
- */
-  __pyx_v_volt = ((__pyx_v_num * 10.0) / 32767.0);
-
-  /* "usb1208fs.pyx":555
- *         cdef np.float32_t volt = 0.0
- *         volt = num * 10.0 / 0x7fff
- *         return <float>volt             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(((float)__pyx_v_volt)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 555, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "usb1208fs.pyx":545
- * 
- *     @staticmethod
- *     def toVoltsSE(int num):             # <<<<<<<<<<<<<<
- *         """ Same as volts_SE, rewritten in cython
- * 
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("usb1208fs.USB1208FS.toVoltsSE", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
@@ -5312,19 +5284,19 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_50toVoltsSE(int __pyx_v_num) {
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_53__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_53__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_49__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_49__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_9usb1208fs_9USB1208FS_52__reduce_cython__(((struct __pyx_obj_9usb1208fs_USB1208FS *)__pyx_v_self));
+  __pyx_r = __pyx_pf_9usb1208fs_9USB1208FS_48__reduce_cython__(((struct __pyx_obj_9usb1208fs_USB1208FS *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self) {
+static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_48__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5366,19 +5338,19 @@ static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_52__reduce_cython__(CYTHON_UNUSE
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_55__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_55__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_51__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_9usb1208fs_9USB1208FS_51__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_9usb1208fs_9USB1208FS_54__setstate_cython__(((struct __pyx_obj_9usb1208fs_USB1208FS *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_9usb1208fs_9USB1208FS_50__setstate_cython__(((struct __pyx_obj_9usb1208fs_USB1208FS *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_9usb1208fs_9USB1208FS_50__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9usb1208fs_USB1208FS *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7974,10 +7946,8 @@ static PyMethodDef __pyx_methods_9usb1208fs_USB1208FS[] = {
   {"setSync", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_43setSync, METH_O, __pyx_doc_9usb1208fs_9USB1208FS_42setSync},
   {"_getAll", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_45_getAll, METH_NOARGS, __pyx_doc_9usb1208fs_9USB1208FS_44_getAll},
   {"init", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_47init, METH_NOARGS, __pyx_doc_9usb1208fs_9USB1208FS_46init},
-  {"toVoltsFS", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_49toVoltsFS, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9usb1208fs_9USB1208FS_48toVoltsFS},
-  {"toVoltsSE", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_51toVoltsSE, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9usb1208fs_9USB1208FS_50toVoltsSE},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_53__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_55__setstate_cython__, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_49__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_9usb1208fs_9USB1208FS_51__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -8138,7 +8108,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
-  {&__pyx_n_s_staticmethod, __pyx_k_staticmethod, sizeof(__pyx_k_staticmethod), 0, 0, 1, 1},
   {&__pyx_n_s_sys, __pyx_k_sys, sizeof(__pyx_k_sys), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_toVoltsFS, __pyx_k_toVoltsFS, sizeof(__pyx_k_toVoltsFS), 0, 0, 1, 1},
@@ -8152,12 +8121,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(0, 22, __pyx_L1_error)
-  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 537, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 75, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 82, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 89, __pyx_L1_error)
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 206, __pyx_L1_error)
-  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 548, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(2, 799, __pyx_L1_error)
   return 0;
@@ -8169,124 +8137,124 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "usb1208fs.pyx":75
+  /* "usb1208fs.pyx":97
  *         self.udev = usb_device_find_USB_MCC(USB1208FS_PID, NULL)
  *         if (self.udev == NULL) or (<int>self.udev == -1):
  *             raise ValueError("Could not initialize USB1208FS, no device found.")             # <<<<<<<<<<<<<<
  *         else:
  *             init_USB1208FS(self.udev)
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Could_not_initialize_USB1208FS_n); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Could_not_initialize_USB1208FS_n); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "usb1208fs.pyx":82
+  /* "usb1208fs.pyx":104
  *     def __del__(self):
  *         """Fully close the device."""
  *         print("Closing...")             # <<<<<<<<<<<<<<
  *         cdef int i = 0
  *         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 1)
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Closing); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Closing); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "usb1208fs.pyx":100
+  /* "usb1208fs.pyx":122
  *         """
  *         if usbDConfigPort_USB1208FS(self.udev, port, direction) != 0:
  *             raise ValueError("Could not configure port.")             # <<<<<<<<<<<<<<
  * 
  *     def din(self, np.uint8_t port):
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Could_not_configure_port); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Could_not_configure_port); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "usb1208fs.pyx":111
+  /* "usb1208fs.pyx":133
  *         cdef np.uint8_t din_value
  *         if usbDIn_USB1208FS(self.udev, port, &din_value) != 0:
  *             raise ValueError("Could not configure port.")             # <<<<<<<<<<<<<<
  *         return din_value
  * 
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Could_not_configure_port); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Could_not_configure_port); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "usb1208fs.pyx":212
+  /* "usb1208fs.pyx":234
  *             if usbAOutScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
  *                     &freq, data, options) < 0:
  *                 raise ValueError("Analog out scan failed, see C error message.")             # <<<<<<<<<<<<<<
  *             dataList = []
  *             for i in range(count):
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Analog_out_scan_failed_see_C_err); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Analog_out_scan_failed_see_C_err); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "usb1208fs.pyx":309
+  /* "usb1208fs.pyx":331
  *             if usbAInScan_USB1208FS(self.udev, lowchannel, highchannel, count, \
  *                     &freq, options, data) < 0:
  *                 raise ValueError("Analog in scan failed, see C error message.")             # <<<<<<<<<<<<<<
  *             dataList = []
  *             for i in range(count):
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_Analog_in_scan_failed_see_C_erro); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_Analog_in_scan_failed_see_C_erro); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "usb1208fs.pyx":339
+  /* "usb1208fs.pyx":361
  *             if usbAInScan_USB1208FS_SE(self.udev, lowchannel, highchannel, \
  *                     count, &freq, options, data) < 0:
  *                 raise ValueError("Analog in SE scan failed, see C error message.")             # <<<<<<<<<<<<<<
  * 
  *             dataList = []
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_Analog_in_SE_scan_failed_see_C_e); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_Analog_in_SE_scan_failed_see_C_e); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "usb1208fs.pyx":365
+  /* "usb1208fs.pyx":387
  *         """
  *         if len(chan) != len(gains):
  *             raise ValueError("length of chans and gains are not the same.")             # <<<<<<<<<<<<<<
  * 
  *         cdef np.uint8_t * chanArr = \
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_length_of_chans_and_gains_are_no); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 365, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_length_of_chans_and_gains_are_no); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "usb1208fs.pyx":454
+  /* "usb1208fs.pyx":476
  * 
  *             if usbWriteMemory_USB1208FS(self.udev, address, count, dataArr) < 0:
  *                 raise ValueError("Could not write to memory.")             # <<<<<<<<<<<<<<
  * 
  *         finally:
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_Could_not_write_to_memory); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_Could_not_write_to_memory); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "usb1208fs.pyx":526
+  /* "usb1208fs.pyx":548
  *         XXX: Returns: {list} - all data from all ports
  *         """
  *         raise NotImplementedError("Currently not supported")             # <<<<<<<<<<<<<<
  * 
  *     def init(self):
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_Currently_not_supported); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_Currently_not_supported); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "usb1208fs.pyx":535
+  /* "usb1208fs.pyx":557
  *         """
  *         if init_USB1208FS(self.udev) < 0:
  *             raise ValueError("Failed to initialize USB1208FS.")             # <<<<<<<<<<<<<<
  * 
- *     @staticmethod
+ * 
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_Failed_to_initialize_USB1208FS); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 535, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_Failed_to_initialize_USB1208FS); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
@@ -8411,35 +8379,35 @@ static int __Pyx_InitCachedConstants(void) {
  * if libusb_init(NULL) != 0:
  *     raise ImportError("Could not load libusb.")             # <<<<<<<<<<<<<<
  * 
- * cdef class USB1208FS:
+ * # constants
  */
   __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_Could_not_load_libusb); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "usb1208fs.pyx":538
+  /* "usb1208fs.pyx":54
  * 
- *     @staticmethod
- *     def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
- *         """Wraps volts_FS():
- *         converts signed short value to volts for Differential Mode
+ * # module-scale functions
+ * def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
+ *     """Wraps volts_FS():
+ *     converts signed short value to volts for Differential Mode
  */
-  __pyx_tuple__24 = PyTuple_Pack(2, __pyx_n_s_gain, __pyx_n_s_num); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 538, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(2, __pyx_n_s_gain, __pyx_n_s_num); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_usb1208fs_pyx, __pyx_n_s_toVoltsFS, 538, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 538, __pyx_L1_error)
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_usb1208fs_pyx, __pyx_n_s_toVoltsFS, 54, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 54, __pyx_L1_error)
 
-  /* "usb1208fs.pyx":545
+  /* "usb1208fs.pyx":61
  * 
- *     @staticmethod
- *     def toVoltsSE(int num):             # <<<<<<<<<<<<<<
- *         """ Same as volts_SE, rewritten in cython
+ * 
+ * def toVoltsSE(int num):             # <<<<<<<<<<<<<<
+ *     """ Same as volts_SE, rewritten in cython
  * 
  */
-  __pyx_tuple__26 = PyTuple_Pack(2, __pyx_n_s_num, __pyx_n_s_volt); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 545, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(3, __pyx_n_s_num, __pyx_n_s_num, __pyx_n_s_volt); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_usb1208fs_pyx, __pyx_n_s_toVoltsSE, 545, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 545, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_usb1208fs_pyx, __pyx_n_s_toVoltsSE, 61, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -8465,7 +8433,6 @@ PyMODINIT_FUNC PyInit_usb1208fs(void)
   PyObject *__pyx_t_1 = NULL;
   int __pyx_t_2;
   int __pyx_t_3;
-  PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannyDeclarations
   #if CYTHON_REFNANNY
   __Pyx_RefNanny = __Pyx_RefNannyImportAPI("refnanny");
@@ -8542,10 +8509,10 @@ PyMODINIT_FUNC PyInit_usb1208fs(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_9usb1208fs_USB1208FS) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_9usb1208fs_USB1208FS) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
   __pyx_type_9usb1208fs_USB1208FS.tp_print = 0;
-  if (PyObject_SetAttrString(__pyx_m, "USB1208FS", (PyObject *)&__pyx_type_9usb1208fs_USB1208FS) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9usb1208fs_USB1208FS) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "USB1208FS", (PyObject *)&__pyx_type_9usb1208fs_USB1208FS) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9usb1208fs_USB1208FS) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
   __pyx_ptype_9usb1208fs_USB1208FS = &__pyx_type_9usb1208fs_USB1208FS;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
@@ -8615,7 +8582,7 @@ PyMODINIT_FUNC PyInit_usb1208fs(void)
  * if libusb_init(NULL) != 0:
  *     raise ImportError("Could not load libusb.")             # <<<<<<<<<<<<<<
  * 
- * cdef class USB1208FS:
+ * # constants
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -8632,359 +8599,293 @@ PyMODINIT_FUNC PyInit_usb1208fs(void)
  */
   }
 
-  /* "usb1208fs.pyx":39
- *     cdef int maxPacketSize
+  /* "usb1208fs.pyx":25
  * 
- *     USB1208FS_PID = c1208fs.USB1208FS_PID             # <<<<<<<<<<<<<<
+ * # constants
+ * USB1208FS_PID = _USB1208FS_PID             # <<<<<<<<<<<<<<
  * 
- *     DIO_PORTA = c1208fs.DIO_PORTA
+ * DIO_PORTA = _DIO_PORTA
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(USB1208FS_PID); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(USB1208FS_PID); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_USB1208FS_PID, __pyx_t_1) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_USB1208FS_PID, __pyx_t_1) < 0) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
+
+  /* "usb1208fs.pyx":27
+ * USB1208FS_PID = _USB1208FS_PID
+ * 
+ * DIO_PORTA = _DIO_PORTA             # <<<<<<<<<<<<<<
+ * DIO_PORTB = _DIO_PORTB
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_PORTA); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DIO_PORTA, __pyx_t_1) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":28
+ * 
+ * DIO_PORTA = _DIO_PORTA
+ * DIO_PORTB = _DIO_PORTB             # <<<<<<<<<<<<<<
+ * 
+ * DIO_DIR_IN = _DIO_DIR_IN
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_PORTB); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DIO_PORTB, __pyx_t_1) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":30
+ * DIO_PORTB = _DIO_PORTB
+ * 
+ * DIO_DIR_IN = _DIO_DIR_IN             # <<<<<<<<<<<<<<
+ * DIO_DIR_OUT = _DIO_DIR_OUT
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_DIR_IN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DIO_DIR_IN, __pyx_t_1) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":31
+ * 
+ * DIO_DIR_IN = _DIO_DIR_IN
+ * DIO_DIR_OUT = _DIO_DIR_OUT             # <<<<<<<<<<<<<<
+ * 
+ * SYNC = _SYNC
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_DIR_OUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DIO_DIR_OUT, __pyx_t_1) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":33
+ * DIO_DIR_OUT = _DIO_DIR_OUT
+ * 
+ * SYNC = _SYNC             # <<<<<<<<<<<<<<
+ * EXT_TRIG_EDGE = _EXT_TRIG_EDGE
+ * UPDATE_MODE = _UPDATE_MODE
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(SYNC); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SYNC, __pyx_t_1) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":34
+ * 
+ * SYNC = _SYNC
+ * EXT_TRIG_EDGE = _EXT_TRIG_EDGE             # <<<<<<<<<<<<<<
+ * UPDATE_MODE = _UPDATE_MODE
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(EXT_TRIG_EDGE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_EXT_TRIG_EDGE, __pyx_t_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":35
+ * SYNC = _SYNC
+ * EXT_TRIG_EDGE = _EXT_TRIG_EDGE
+ * UPDATE_MODE = _UPDATE_MODE             # <<<<<<<<<<<<<<
+ * 
+ * SE_10_00V = _SE_10_00V
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(UPDATE_MODE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UPDATE_MODE, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":37
+ * UPDATE_MODE = _UPDATE_MODE
+ * 
+ * SE_10_00V = _SE_10_00V             # <<<<<<<<<<<<<<
+ * BP_20_00V = _BP_20_00V
+ * BP_10_00V = _BP_10_00V
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(SE_10_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SE_10_00V, __pyx_t_1) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":38
+ * 
+ * SE_10_00V = _SE_10_00V
+ * BP_20_00V = _BP_20_00V             # <<<<<<<<<<<<<<
+ * BP_10_00V = _BP_10_00V
+ * BP_5_00V = _BP_5_00V
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_20_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_20_00V, __pyx_t_1) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":39
+ * SE_10_00V = _SE_10_00V
+ * BP_20_00V = _BP_20_00V
+ * BP_10_00V = _BP_10_00V             # <<<<<<<<<<<<<<
+ * BP_5_00V = _BP_5_00V
+ * BP_4_00V = _BP_4_00V
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_10_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_10_00V, __pyx_t_1) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "usb1208fs.pyx":40
+ * BP_20_00V = _BP_20_00V
+ * BP_10_00V = _BP_10_00V
+ * BP_5_00V = _BP_5_00V             # <<<<<<<<<<<<<<
+ * BP_4_00V = _BP_4_00V
+ * BP_2_50V = _BP_2_50V
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_5_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_5_00V, __pyx_t_1) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "usb1208fs.pyx":41
- *     USB1208FS_PID = c1208fs.USB1208FS_PID
- * 
- *     DIO_PORTA = c1208fs.DIO_PORTA             # <<<<<<<<<<<<<<
- *     DIO_PORTB = c1208fs.DIO_PORTB
- * 
+ * BP_10_00V = _BP_10_00V
+ * BP_5_00V = _BP_5_00V
+ * BP_4_00V = _BP_4_00V             # <<<<<<<<<<<<<<
+ * BP_2_50V = _BP_2_50V
+ * BP_2_00V = _BP_2_00V
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_PORTA); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_4_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_DIO_PORTA, __pyx_t_1) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_4_00V, __pyx_t_1) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":42
- * 
- *     DIO_PORTA = c1208fs.DIO_PORTA
- *     DIO_PORTB = c1208fs.DIO_PORTB             # <<<<<<<<<<<<<<
- * 
- *     DIO_DIR_IN = c1208fs.DIO_DIR_IN
+ * BP_5_00V = _BP_5_00V
+ * BP_4_00V = _BP_4_00V
+ * BP_2_50V = _BP_2_50V             # <<<<<<<<<<<<<<
+ * BP_2_00V = _BP_2_00V
+ * BP_1_25V = _BP_1_25V
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_PORTB); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_2_50V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_DIO_PORTB, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_2_50V, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
+
+  /* "usb1208fs.pyx":43
+ * BP_4_00V = _BP_4_00V
+ * BP_2_50V = _BP_2_50V
+ * BP_2_00V = _BP_2_00V             # <<<<<<<<<<<<<<
+ * BP_1_25V = _BP_1_25V
+ * BP_1_00V = _BP_1_00V
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_2_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_2_00V, __pyx_t_1) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "usb1208fs.pyx":44
- *     DIO_PORTB = c1208fs.DIO_PORTB
- * 
- *     DIO_DIR_IN = c1208fs.DIO_DIR_IN             # <<<<<<<<<<<<<<
- *     DIO_DIR_OUT = c1208fs.DIO_DIR_OUT
+ * BP_2_50V = _BP_2_50V
+ * BP_2_00V = _BP_2_00V
+ * BP_1_25V = _BP_1_25V             # <<<<<<<<<<<<<<
+ * BP_1_00V = _BP_1_00V
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_DIR_IN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_1_25V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_DIO_DIR_IN, __pyx_t_1) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_1_25V, __pyx_t_1) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":45
+ * BP_2_00V = _BP_2_00V
+ * BP_1_25V = _BP_1_25V
+ * BP_1_00V = _BP_1_00V             # <<<<<<<<<<<<<<
  * 
- *     DIO_DIR_IN = c1208fs.DIO_DIR_IN
- *     DIO_DIR_OUT = c1208fs.DIO_DIR_OUT             # <<<<<<<<<<<<<<
- * 
- *     SYNC = c1208fs.SYNC
+ * AIN_EXECUTION = _AIN_EXECUTION
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(DIO_DIR_OUT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(BP_1_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_DIO_DIR_OUT, __pyx_t_1) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BP_1_00V, __pyx_t_1) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":47
- *     DIO_DIR_OUT = c1208fs.DIO_DIR_OUT
+ * BP_1_00V = _BP_1_00V
  * 
- *     SYNC = c1208fs.SYNC             # <<<<<<<<<<<<<<
- *     EXT_TRIG_EDGE = c1208fs.EXT_TRIG_EDGE
- *     UPDATE_MODE = c1208fs.UPDATE_MODE
+ * AIN_EXECUTION = _AIN_EXECUTION             # <<<<<<<<<<<<<<
+ * AIN_TRANSFER_MODE = _AIN_TRANSFER_MODE
+ * AIN_TRIGGER = _AIN_TRIGGER
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(SYNC); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_EXECUTION); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_SYNC, __pyx_t_1) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AIN_EXECUTION, __pyx_t_1) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":48
  * 
- *     SYNC = c1208fs.SYNC
- *     EXT_TRIG_EDGE = c1208fs.EXT_TRIG_EDGE             # <<<<<<<<<<<<<<
- *     UPDATE_MODE = c1208fs.UPDATE_MODE
- * 
+ * AIN_EXECUTION = _AIN_EXECUTION
+ * AIN_TRANSFER_MODE = _AIN_TRANSFER_MODE             # <<<<<<<<<<<<<<
+ * AIN_TRIGGER = _AIN_TRIGGER
+ * AIN_DEBUG = _AIN_DEBUG
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(EXT_TRIG_EDGE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_TRANSFER_MODE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_EXT_TRIG_EDGE, __pyx_t_1) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AIN_TRANSFER_MODE, __pyx_t_1) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":49
- *     SYNC = c1208fs.SYNC
- *     EXT_TRIG_EDGE = c1208fs.EXT_TRIG_EDGE
- *     UPDATE_MODE = c1208fs.UPDATE_MODE             # <<<<<<<<<<<<<<
- * 
- *     SE_10_00V = c1208fs.SE_10_00V
+ * AIN_EXECUTION = _AIN_EXECUTION
+ * AIN_TRANSFER_MODE = _AIN_TRANSFER_MODE
+ * AIN_TRIGGER = _AIN_TRIGGER             # <<<<<<<<<<<<<<
+ * AIN_DEBUG = _AIN_DEBUG
+ * AIN_GAIN_QUEUE = _AIN_GAIN_QUEUE
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(UPDATE_MODE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_TRIGGER); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_UPDATE_MODE, __pyx_t_1) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AIN_TRIGGER, __pyx_t_1) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
+
+  /* "usb1208fs.pyx":50
+ * AIN_TRANSFER_MODE = _AIN_TRANSFER_MODE
+ * AIN_TRIGGER = _AIN_TRIGGER
+ * AIN_DEBUG = _AIN_DEBUG             # <<<<<<<<<<<<<<
+ * AIN_GAIN_QUEUE = _AIN_GAIN_QUEUE
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_DEBUG); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AIN_DEBUG, __pyx_t_1) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "usb1208fs.pyx":51
- *     UPDATE_MODE = c1208fs.UPDATE_MODE
+ * AIN_TRIGGER = _AIN_TRIGGER
+ * AIN_DEBUG = _AIN_DEBUG
+ * AIN_GAIN_QUEUE = _AIN_GAIN_QUEUE             # <<<<<<<<<<<<<<
  * 
- *     SE_10_00V = c1208fs.SE_10_00V             # <<<<<<<<<<<<<<
- *     BP_20_00V = c1208fs.BP_20_00V
- *     BP_10_00V = c1208fs.BP_10_00V
+ * # module-scale functions
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(SE_10_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_GAIN_QUEUE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_SE_10_00V, __pyx_t_1) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AIN_GAIN_QUEUE, __pyx_t_1) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":52
- * 
- *     SE_10_00V = c1208fs.SE_10_00V
- *     BP_20_00V = c1208fs.BP_20_00V             # <<<<<<<<<<<<<<
- *     BP_10_00V = c1208fs.BP_10_00V
- *     BP_5_00V = c1208fs.BP_5_00V
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_20_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_20_00V, __pyx_t_1) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":53
- *     SE_10_00V = c1208fs.SE_10_00V
- *     BP_20_00V = c1208fs.BP_20_00V
- *     BP_10_00V = c1208fs.BP_10_00V             # <<<<<<<<<<<<<<
- *     BP_5_00V = c1208fs.BP_5_00V
- *     BP_4_00V = c1208fs.BP_4_00V
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_10_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_10_00V, __pyx_t_1) < 0) __PYX_ERR(0, 53, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":54
- *     BP_20_00V = c1208fs.BP_20_00V
- *     BP_10_00V = c1208fs.BP_10_00V
- *     BP_5_00V = c1208fs.BP_5_00V             # <<<<<<<<<<<<<<
- *     BP_4_00V = c1208fs.BP_4_00V
- *     BP_2_50V = c1208fs.BP_2_50V
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_5_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_5_00V, __pyx_t_1) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":55
- *     BP_10_00V = c1208fs.BP_10_00V
- *     BP_5_00V = c1208fs.BP_5_00V
- *     BP_4_00V = c1208fs.BP_4_00V             # <<<<<<<<<<<<<<
- *     BP_2_50V = c1208fs.BP_2_50V
- *     BP_2_00V = c1208fs.BP_2_00V
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_4_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_4_00V, __pyx_t_1) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":56
- *     BP_5_00V = c1208fs.BP_5_00V
- *     BP_4_00V = c1208fs.BP_4_00V
- *     BP_2_50V = c1208fs.BP_2_50V             # <<<<<<<<<<<<<<
- *     BP_2_00V = c1208fs.BP_2_00V
- *     BP_1_25V = c1208fs.BP_1_25V
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_2_50V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_2_50V, __pyx_t_1) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":57
- *     BP_4_00V = c1208fs.BP_4_00V
- *     BP_2_50V = c1208fs.BP_2_50V
- *     BP_2_00V = c1208fs.BP_2_00V             # <<<<<<<<<<<<<<
- *     BP_1_25V = c1208fs.BP_1_25V
- *     BP_1_00V = c1208fs.BP_1_00V
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_2_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_2_00V, __pyx_t_1) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":58
- *     BP_2_50V = c1208fs.BP_2_50V
- *     BP_2_00V = c1208fs.BP_2_00V
- *     BP_1_25V = c1208fs.BP_1_25V             # <<<<<<<<<<<<<<
- *     BP_1_00V = c1208fs.BP_1_00V
  * 
+ * # module-scale functions
+ * def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
+ *     """Wraps volts_FS():
+ *     converts signed short value to volts for Differential Mode
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_1_25V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_9usb1208fs_1toVoltsFS, NULL, __pyx_n_s_usb1208fs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_1_25V, __pyx_t_1) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_toVoltsFS, __pyx_t_1) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":59
- *     BP_2_00V = c1208fs.BP_2_00V
- *     BP_1_25V = c1208fs.BP_1_25V
- *     BP_1_00V = c1208fs.BP_1_00V             # <<<<<<<<<<<<<<
- * 
- *     AIN_EXECUTION = c1208fs.AIN_EXECUTION
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(BP_1_00V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_BP_1_00V, __pyx_t_1) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":61
- *     BP_1_00V = c1208fs.BP_1_00V
  * 
- *     AIN_EXECUTION = c1208fs.AIN_EXECUTION             # <<<<<<<<<<<<<<
- *     AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE
- *     AIN_TRIGGER = c1208fs.AIN_TRIGGER
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_EXECUTION); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_AIN_EXECUTION, __pyx_t_1) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":62
  * 
- *     AIN_EXECUTION = c1208fs.AIN_EXECUTION
- *     AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE             # <<<<<<<<<<<<<<
- *     AIN_TRIGGER = c1208fs.AIN_TRIGGER
- *     AIN_DEBUG = c1208fs.AIN_DEBUG
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_TRANSFER_MODE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_AIN_TRANSFER_MODE, __pyx_t_1) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":63
- *     AIN_EXECUTION = c1208fs.AIN_EXECUTION
- *     AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE
- *     AIN_TRIGGER = c1208fs.AIN_TRIGGER             # <<<<<<<<<<<<<<
- *     AIN_DEBUG = c1208fs.AIN_DEBUG
- *     AIN_GAIN_QUEUE = c1208fs.AIN_GAIN_QUEUE
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_TRIGGER); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_AIN_TRIGGER, __pyx_t_1) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":64
- *     AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE
- *     AIN_TRIGGER = c1208fs.AIN_TRIGGER
- *     AIN_DEBUG = c1208fs.AIN_DEBUG             # <<<<<<<<<<<<<<
- *     AIN_GAIN_QUEUE = c1208fs.AIN_GAIN_QUEUE
+ * def toVoltsSE(int num):             # <<<<<<<<<<<<<<
+ *     """ Same as volts_SE, rewritten in cython
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_DEBUG); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_9usb1208fs_3toVoltsSE, NULL, __pyx_n_s_usb1208fs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_AIN_DEBUG, __pyx_t_1) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_toVoltsSE, __pyx_t_1) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":65
- *     AIN_TRIGGER = c1208fs.AIN_TRIGGER
- *     AIN_DEBUG = c1208fs.AIN_DEBUG
- *     AIN_GAIN_QUEUE = c1208fs.AIN_GAIN_QUEUE             # <<<<<<<<<<<<<<
- * 
- *     @cython.boundscheck(False)
- */
-  __pyx_t_1 = __Pyx_PyInt_From_int(AIN_GAIN_QUEUE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_AIN_GAIN_QUEUE, __pyx_t_1) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":538
- * 
- *     @staticmethod
- *     def toVoltsFS(int gain, int num):             # <<<<<<<<<<<<<<
- *         """Wraps volts_FS():
- *         converts signed short value to volts for Differential Mode
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_9usb1208fs_9USB1208FS_49toVoltsFS, NULL, __pyx_n_s_usb1208fs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 538, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_toVoltsFS, __pyx_t_1) < 0) __PYX_ERR(0, 538, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":537
- *             raise ValueError("Failed to initialize USB1208FS.")
- * 
- *     @staticmethod             # <<<<<<<<<<<<<<
- *     def toVoltsFS(int gain, int num):
- *         """Wraps volts_FS():
- */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS, __pyx_n_s_toVoltsFS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 538, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 537, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 537, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_toVoltsFS, __pyx_t_1) < 0) __PYX_ERR(0, 538, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":545
- * 
- *     @staticmethod
- *     def toVoltsSE(int num):             # <<<<<<<<<<<<<<
- *         """ Same as volts_SE, rewritten in cython
- * 
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_9usb1208fs_9USB1208FS_51toVoltsSE, NULL, __pyx_n_s_usb1208fs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 545, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_toVoltsSE, __pyx_t_1) < 0) __PYX_ERR(0, 545, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
-
-  /* "usb1208fs.pyx":544
- *         return <float>volts_FS(gain, num)
- * 
- *     @staticmethod             # <<<<<<<<<<<<<<
- *     def toVoltsSE(int num):
- *         """ Same as volts_SE, rewritten in cython
- */
-  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS, __pyx_n_s_toVoltsSE); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 545, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 544, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 544, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_9usb1208fs_USB1208FS->tp_dict, __pyx_n_s_toVoltsSE, __pyx_t_1) < 0) __PYX_ERR(0, 545, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_9usb1208fs_USB1208FS);
 
   /* "usb1208fs.pyx":1
  * # Filename: 1208fs.pyx             # <<<<<<<<<<<<<<
@@ -9009,7 +8910,6 @@ PyMODINIT_FUNC PyInit_usb1208fs(void)
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_4);
   if (__pyx_m) {
     if (__pyx_d) {
       __Pyx_AddTraceback("init usb1208fs", 0, __pyx_lineno, __pyx_filename);
@@ -9085,6 +8985,122 @@ static void __Pyx_RaiseArgtupleInvalid(
                  (num_expected == 1) ? "" : "s", num_found);
 }
 
+/* RaiseDoubleKeywords */
+static void __Pyx_RaiseDoubleKeywordsError(
+    const char* func_name,
+    PyObject* kw_name)
+{
+    PyErr_Format(PyExc_TypeError,
+        #if PY_MAJOR_VERSION >= 3
+        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
+        #else
+        "%s() got multiple values for keyword argument '%s'", func_name,
+        PyString_AsString(kw_name));
+        #endif
+}
+
+/* ParseKeywords */
+static int __Pyx_ParseOptionalKeywords(
+    PyObject *kwds,
+    PyObject **argnames[],
+    PyObject *kwds2,
+    PyObject *values[],
+    Py_ssize_t num_pos_args,
+    const char* function_name)
+{
+    PyObject *key = 0, *value = 0;
+    Py_ssize_t pos = 0;
+    PyObject*** name;
+    PyObject*** first_kw_arg = argnames + num_pos_args;
+    while (PyDict_Next(kwds, &pos, &key, &value)) {
+        name = first_kw_arg;
+        while (*name && (**name != key)) name++;
+        if (*name) {
+            values[name-argnames] = value;
+            continue;
+        }
+        name = first_kw_arg;
+        #if PY_MAJOR_VERSION < 3
+        if (likely(PyString_CheckExact(key)) || likely(PyString_Check(key))) {
+            while (*name) {
+                if ((CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**name) == PyString_GET_SIZE(key))
+                        && _PyString_Eq(**name, key)) {
+                    values[name-argnames] = value;
+                    break;
+                }
+                name++;
+            }
+            if (*name) continue;
+            else {
+                PyObject*** argname = argnames;
+                while (argname != first_kw_arg) {
+                    if ((**argname == key) || (
+                            (CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**argname) == PyString_GET_SIZE(key))
+                             && _PyString_Eq(**argname, key))) {
+                        goto arg_passed_twice;
+                    }
+                    argname++;
+                }
+            }
+        } else
+        #endif
+        if (likely(PyUnicode_Check(key))) {
+            while (*name) {
+                int cmp = (**name == key) ? 0 :
+                #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
+                    (PyUnicode_GET_SIZE(**name) != PyUnicode_GET_SIZE(key)) ? 1 :
+                #endif
+                    PyUnicode_Compare(**name, key);
+                if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
+                if (cmp == 0) {
+                    values[name-argnames] = value;
+                    break;
+                }
+                name++;
+            }
+            if (*name) continue;
+            else {
+                PyObject*** argname = argnames;
+                while (argname != first_kw_arg) {
+                    int cmp = (**argname == key) ? 0 :
+                    #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
+                        (PyUnicode_GET_SIZE(**argname) != PyUnicode_GET_SIZE(key)) ? 1 :
+                    #endif
+                        PyUnicode_Compare(**argname, key);
+                    if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
+                    if (cmp == 0) goto arg_passed_twice;
+                    argname++;
+                }
+            }
+        } else
+            goto invalid_keyword_type;
+        if (kwds2) {
+            if (unlikely(PyDict_SetItem(kwds2, key, value))) goto bad;
+        } else {
+            goto invalid_keyword;
+        }
+    }
+    return 0;
+arg_passed_twice:
+    __Pyx_RaiseDoubleKeywordsError(function_name, key);
+    goto bad;
+invalid_keyword_type:
+    PyErr_Format(PyExc_TypeError,
+        "%.200s() keywords must be strings", function_name);
+    goto bad;
+invalid_keyword:
+    PyErr_Format(PyExc_TypeError,
+    #if PY_MAJOR_VERSION < 3
+        "%.200s() got an unexpected keyword argument '%.200s'",
+        function_name, PyString_AsString(key));
+    #else
+        "%s() got an unexpected keyword argument '%U'",
+        function_name, key);
+    #endif
+bad:
+    return -1;
+}
+
 /* KeywordStringCheck */
 static CYTHON_INLINE int __Pyx_CheckKeywordStrings(
     PyObject *kwdict,
@@ -9125,8 +9141,26 @@ invalid_keyword:
     return 0;
 }
 
+/* GetModuleGlobalName */
+static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name) {
+    PyObject *result;
+#if !CYTHON_AVOID_BORROWED_REFS
+    result = PyDict_GetItem(__pyx_d, name);
+    if (likely(result)) {
+        Py_INCREF(result);
+    } else {
+#else
+    result = PyObject_GetItem(__pyx_d, name);
+    if (!result) {
+        PyErr_Clear();
+#endif
+        result = __Pyx_GetBuiltinName(name);
+    }
+    return result;
+}
+
 /* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
+  #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
     PyObject *result;
     ternaryfunc call = func->ob_type->tp_call;
@@ -9146,7 +9180,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg
 #endif
 
 /* PyErrFetchRestore */
-#if CYTHON_FAST_THREAD_STATE
+  #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
     PyObject *tmp_type, *tmp_value, *tmp_tb;
     tmp_type = tstate->curexc_type;
@@ -9170,7 +9204,7 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #endif
 
 /* RaiseException */
-#if PY_MAJOR_VERSION < 3
+  #if PY_MAJOR_VERSION < 3
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,
                         CYTHON_UNUSED PyObject *cause) {
     __Pyx_PyThreadState_declare
@@ -9332,124 +9366,8 @@ bad:
 }
 #endif
 
-/* RaiseDoubleKeywords */
-  static void __Pyx_RaiseDoubleKeywordsError(
-    const char* func_name,
-    PyObject* kw_name)
-{
-    PyErr_Format(PyExc_TypeError,
-        #if PY_MAJOR_VERSION >= 3
-        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
-        #else
-        "%s() got multiple values for keyword argument '%s'", func_name,
-        PyString_AsString(kw_name));
-        #endif
-}
-
-/* ParseKeywords */
-  static int __Pyx_ParseOptionalKeywords(
-    PyObject *kwds,
-    PyObject **argnames[],
-    PyObject *kwds2,
-    PyObject *values[],
-    Py_ssize_t num_pos_args,
-    const char* function_name)
-{
-    PyObject *key = 0, *value = 0;
-    Py_ssize_t pos = 0;
-    PyObject*** name;
-    PyObject*** first_kw_arg = argnames + num_pos_args;
-    while (PyDict_Next(kwds, &pos, &key, &value)) {
-        name = first_kw_arg;
-        while (*name && (**name != key)) name++;
-        if (*name) {
-            values[name-argnames] = value;
-            continue;
-        }
-        name = first_kw_arg;
-        #if PY_MAJOR_VERSION < 3
-        if (likely(PyString_CheckExact(key)) || likely(PyString_Check(key))) {
-            while (*name) {
-                if ((CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**name) == PyString_GET_SIZE(key))
-                        && _PyString_Eq(**name, key)) {
-                    values[name-argnames] = value;
-                    break;
-                }
-                name++;
-            }
-            if (*name) continue;
-            else {
-                PyObject*** argname = argnames;
-                while (argname != first_kw_arg) {
-                    if ((**argname == key) || (
-                            (CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**argname) == PyString_GET_SIZE(key))
-                             && _PyString_Eq(**argname, key))) {
-                        goto arg_passed_twice;
-                    }
-                    argname++;
-                }
-            }
-        } else
-        #endif
-        if (likely(PyUnicode_Check(key))) {
-            while (*name) {
-                int cmp = (**name == key) ? 0 :
-                #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
-                    (PyUnicode_GET_SIZE(**name) != PyUnicode_GET_SIZE(key)) ? 1 :
-                #endif
-                    PyUnicode_Compare(**name, key);
-                if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
-                if (cmp == 0) {
-                    values[name-argnames] = value;
-                    break;
-                }
-                name++;
-            }
-            if (*name) continue;
-            else {
-                PyObject*** argname = argnames;
-                while (argname != first_kw_arg) {
-                    int cmp = (**argname == key) ? 0 :
-                    #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
-                        (PyUnicode_GET_SIZE(**argname) != PyUnicode_GET_SIZE(key)) ? 1 :
-                    #endif
-                        PyUnicode_Compare(**argname, key);
-                    if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
-                    if (cmp == 0) goto arg_passed_twice;
-                    argname++;
-                }
-            }
-        } else
-            goto invalid_keyword_type;
-        if (kwds2) {
-            if (unlikely(PyDict_SetItem(kwds2, key, value))) goto bad;
-        } else {
-            goto invalid_keyword;
-        }
-    }
-    return 0;
-arg_passed_twice:
-    __Pyx_RaiseDoubleKeywordsError(function_name, key);
-    goto bad;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%.200s() keywords must be strings", function_name);
-    goto bad;
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%.200s() got an unexpected keyword argument '%.200s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-bad:
-    return -1;
-}
-
 /* GetException */
-  #if CYTHON_FAST_THREAD_STATE
+    #if CYTHON_FAST_THREAD_STATE
 static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
 #else
 static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
@@ -9510,7 +9428,7 @@ bad:
 }
 
 /* SwapException */
-    #if CYTHON_FAST_THREAD_STATE
+      #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE void __Pyx__ExceptionSwap(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
     PyObject *tmp_type, *tmp_value, *tmp_tb;
     tmp_type = tstate->exc_type;
@@ -9535,7 +9453,7 @@ static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value,
 #endif
 
 /* SaveResetException */
-    #if CYTHON_FAST_THREAD_STATE
+      #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
     *type = tstate->exc_type;
     *value = tstate->exc_value;
@@ -9559,7 +9477,7 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #endif
 
 /* GetItemInt */
-    static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
+      static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
     PyObject *r;
     if (!j) return NULL;
     r = PyObject_GetItem(o, j);
@@ -9646,25 +9564,25 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
 }
 
 /* RaiseTooManyValuesToUnpack */
-    static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
+      static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
     PyErr_Format(PyExc_ValueError,
                  "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
 }
 
 /* RaiseNeedMoreValuesToUnpack */
-    static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
+      static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
     PyErr_Format(PyExc_ValueError,
                  "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
                  index, (index == 1) ? "" : "s");
 }
 
 /* RaiseNoneIterError */
-    static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {
+      static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
 }
 
 /* ExtTypeTest */
-    static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+      static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
     if (unlikely(!type)) {
         PyErr_SetString(PyExc_SystemError, "Missing type object");
         return 0;
@@ -9677,7 +9595,7 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
 }
 
 /* PyErrExceptionMatches */
-    #if CYTHON_FAST_THREAD_STATE
+      #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
     PyObject *exc_type = tstate->curexc_type;
     if (exc_type == err) return 1;
@@ -9687,7 +9605,7 @@ static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tsta
 #endif
 
 /* SetupReduce */
-    static int __Pyx_setup_reduce_is_named(PyObject* meth, PyObject* name) {
+      static int __Pyx_setup_reduce_is_named(PyObject* meth, PyObject* name) {
   int ret;
   PyObject *name_attr;
   name_attr = __Pyx_PyObject_GetAttrStr(meth, __pyx_n_s_name);
@@ -9763,7 +9681,7 @@ GOOD:
 }
 
 /* Import */
-    static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
+      static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
     PyObject *empty_list = 0;
     PyObject *module = 0;
     PyObject *global_dict = 0;
@@ -9834,33 +9752,6 @@ bad:
     Py_XDECREF(empty_list);
     Py_XDECREF(empty_dict);
     return module;
-}
-
-/* GetModuleGlobalName */
-    static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name) {
-    PyObject *result;
-#if !CYTHON_AVOID_BORROWED_REFS
-    result = PyDict_GetItem(__pyx_d, name);
-    if (likely(result)) {
-        Py_INCREF(result);
-    } else {
-#else
-    result = PyObject_GetItem(__pyx_d, name);
-    if (!result) {
-        PyErr_Clear();
-#endif
-        result = __Pyx_GetBuiltinName(name);
-    }
-    return result;
-}
-
-/* GetNameInClass */
-      static PyObject *__Pyx_GetNameInClass(PyObject *nmspace, PyObject *name) {
-    PyObject *result;
-    result = __Pyx_PyObject_GetAttrStr(nmspace, name);
-    if (!result)
-        result = __Pyx_GetModuleGlobalName(name);
-    return result;
 }
 
 /* CLineInTraceback */
@@ -10551,6 +10442,195 @@ bad:
 }
 
 /* CIntFromPy */
+      static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
+    const int neg_one = (int) -1, const_zero = (int) 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(int) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(int, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (int) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (int) 0;
+                case  1: __PYX_VERIFY_RETURN_INT(int, digit, digits[0])
+                case 2:
+                    if (8 * sizeof(int) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) >= 2 * PyLong_SHIFT) {
+                            return (int) (((((int)digits[1]) << PyLong_SHIFT) | (int)digits[0]));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(int) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) >= 3 * PyLong_SHIFT) {
+                            return (int) (((((((int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0]));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(int) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) >= 4 * PyLong_SHIFT) {
+                            return (int) (((((((((int)digits[3]) << PyLong_SHIFT) | (int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0]));
+                        }
+                    }
+                    break;
+            }
+#endif
+#if CYTHON_COMPILING_IN_CPYTHON
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+#else
+            {
+                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
+                if (unlikely(result < 0))
+                    return (int) -1;
+                if (unlikely(result == 1))
+                    goto raise_neg_overflow;
+            }
+#endif
+            if (sizeof(int) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(int, unsigned long, PyLong_AsUnsignedLong(x))
+#ifdef HAVE_LONG_LONG
+            } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(int, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
+#endif
+            }
+        } else {
+#if CYTHON_USE_PYLONG_INTERNALS
+            const digit* digits = ((PyLongObject*)x)->ob_digit;
+            switch (Py_SIZE(x)) {
+                case  0: return (int) 0;
+                case -1: __PYX_VERIFY_RETURN_INT(int, sdigit, (sdigit) (-(sdigit)digits[0]))
+                case  1: __PYX_VERIFY_RETURN_INT(int,  digit, +digits[0])
+                case -2:
+                    if (8 * sizeof(int) - 1 > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) - 1 > 2 * PyLong_SHIFT) {
+                            return (int) (((int)-1)*(((((int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
+                        }
+                    }
+                    break;
+                case 2:
+                    if (8 * sizeof(int) > 1 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) - 1 > 2 * PyLong_SHIFT) {
+                            return (int) ((((((int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
+                        }
+                    }
+                    break;
+                case -3:
+                    if (8 * sizeof(int) - 1 > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) - 1 > 3 * PyLong_SHIFT) {
+                            return (int) (((int)-1)*(((((((int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
+                        }
+                    }
+                    break;
+                case 3:
+                    if (8 * sizeof(int) > 2 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) - 1 > 3 * PyLong_SHIFT) {
+                            return (int) ((((((((int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
+                        }
+                    }
+                    break;
+                case -4:
+                    if (8 * sizeof(int) - 1 > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) - 1 > 4 * PyLong_SHIFT) {
+                            return (int) (((int)-1)*(((((((((int)digits[3]) << PyLong_SHIFT) | (int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
+                        }
+                    }
+                    break;
+                case 4:
+                    if (8 * sizeof(int) > 3 * PyLong_SHIFT) {
+                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
+                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
+                        } else if (8 * sizeof(int) - 1 > 4 * PyLong_SHIFT) {
+                            return (int) ((((((((((int)digits[3]) << PyLong_SHIFT) | (int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
+                        }
+                    }
+                    break;
+            }
+#endif
+            if (sizeof(int) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT_EXC(int, long, PyLong_AsLong(x))
+#ifdef HAVE_LONG_LONG
+            } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
+                __PYX_VERIFY_RETURN_INT_EXC(int, PY_LONG_LONG, PyLong_AsLongLong(x))
+#endif
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            int val;
+            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (int) -1;
+        }
+    } else {
+        int val;
+        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
+        if (!tmp) return (int) -1;
+        val = __Pyx_PyInt_As_int(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to int");
+    return (int) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to int");
+    return (int) -1;
+}
+
+/* CIntFromPy */
       static CYTHON_INLINE npy_uint8 __Pyx_PyInt_As_npy_uint8(PyObject *x) {
     const npy_uint8 neg_one = (npy_uint8) -1, const_zero = (npy_uint8) 0;
     const int is_unsigned = neg_one > const_zero;
@@ -11115,195 +11195,6 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to npy_uint32");
     return (npy_uint32) -1;
-}
-
-/* CIntFromPy */
-      static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
-    const int neg_one = (int) -1, const_zero = (int) 0;
-    const int is_unsigned = neg_one > const_zero;
-#if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_Check(x))) {
-        if (sizeof(int) < sizeof(long)) {
-            __PYX_VERIFY_RETURN_INT(int, long, PyInt_AS_LONG(x))
-        } else {
-            long val = PyInt_AS_LONG(x);
-            if (is_unsigned && unlikely(val < 0)) {
-                goto raise_neg_overflow;
-            }
-            return (int) val;
-        }
-    } else
-#endif
-    if (likely(PyLong_Check(x))) {
-        if (is_unsigned) {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (int) 0;
-                case  1: __PYX_VERIFY_RETURN_INT(int, digit, digits[0])
-                case 2:
-                    if (8 * sizeof(int) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) >= 2 * PyLong_SHIFT) {
-                            return (int) (((((int)digits[1]) << PyLong_SHIFT) | (int)digits[0]));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(int) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) >= 3 * PyLong_SHIFT) {
-                            return (int) (((((((int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0]));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(int) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) >= 4 * PyLong_SHIFT) {
-                            return (int) (((((((((int)digits[3]) << PyLong_SHIFT) | (int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0]));
-                        }
-                    }
-                    break;
-            }
-#endif
-#if CYTHON_COMPILING_IN_CPYTHON
-            if (unlikely(Py_SIZE(x) < 0)) {
-                goto raise_neg_overflow;
-            }
-#else
-            {
-                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
-                if (unlikely(result < 0))
-                    return (int) -1;
-                if (unlikely(result == 1))
-                    goto raise_neg_overflow;
-            }
-#endif
-            if (sizeof(int) <= sizeof(unsigned long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(int, unsigned long, PyLong_AsUnsignedLong(x))
-#ifdef HAVE_LONG_LONG
-            } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(int, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
-#endif
-            }
-        } else {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (int) 0;
-                case -1: __PYX_VERIFY_RETURN_INT(int, sdigit, (sdigit) (-(sdigit)digits[0]))
-                case  1: __PYX_VERIFY_RETURN_INT(int,  digit, +digits[0])
-                case -2:
-                    if (8 * sizeof(int) - 1 > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) - 1 > 2 * PyLong_SHIFT) {
-                            return (int) (((int)-1)*(((((int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
-                        }
-                    }
-                    break;
-                case 2:
-                    if (8 * sizeof(int) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) - 1 > 2 * PyLong_SHIFT) {
-                            return (int) ((((((int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
-                        }
-                    }
-                    break;
-                case -3:
-                    if (8 * sizeof(int) - 1 > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) - 1 > 3 * PyLong_SHIFT) {
-                            return (int) (((int)-1)*(((((((int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(int) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) - 1 > 3 * PyLong_SHIFT) {
-                            return (int) ((((((((int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
-                        }
-                    }
-                    break;
-                case -4:
-                    if (8 * sizeof(int) - 1 > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) - 1 > 4 * PyLong_SHIFT) {
-                            return (int) (((int)-1)*(((((((((int)digits[3]) << PyLong_SHIFT) | (int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(int) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(int, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(int) - 1 > 4 * PyLong_SHIFT) {
-                            return (int) ((((((((((int)digits[3]) << PyLong_SHIFT) | (int)digits[2]) << PyLong_SHIFT) | (int)digits[1]) << PyLong_SHIFT) | (int)digits[0])));
-                        }
-                    }
-                    break;
-            }
-#endif
-            if (sizeof(int) <= sizeof(long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(int, long, PyLong_AsLong(x))
-#ifdef HAVE_LONG_LONG
-            } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(int, PY_LONG_LONG, PyLong_AsLongLong(x))
-#endif
-            }
-        }
-        {
-#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
-            PyErr_SetString(PyExc_RuntimeError,
-                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
-#else
-            int val;
-            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
- #if PY_MAJOR_VERSION < 3
-            if (likely(v) && !PyLong_Check(v)) {
-                PyObject *tmp = v;
-                v = PyNumber_Long(tmp);
-                Py_DECREF(tmp);
-            }
- #endif
-            if (likely(v)) {
-                int one = 1; int is_little = (int)*(unsigned char *)&one;
-                unsigned char *bytes = (unsigned char *)&val;
-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
-                                              bytes, sizeof(val),
-                                              is_little, !is_unsigned);
-                Py_DECREF(v);
-                if (likely(!ret))
-                    return val;
-            }
-#endif
-            return (int) -1;
-        }
-    } else {
-        int val;
-        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
-        if (!tmp) return (int) -1;
-        val = __Pyx_PyInt_As_int(tmp);
-        Py_DECREF(tmp);
-        return val;
-    }
-raise_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "value too large to convert to int");
-    return (int) -1;
-raise_neg_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "can't convert negative value to int");
-    return (int) -1;
 }
 
 /* CIntToPy */

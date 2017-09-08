@@ -59,38 +59,33 @@ cdef extern from "pmd.h":
 # usb-1208FS.h
 cdef extern from "usb-1208FS.h":
     # #define entries
-    int USB1208FS_PID 
+    int _USB1208FS_PID "USB1208FS_PID"  
 
-    int DIO_PORTA
-    int DIO_PORTB
+    int _DIO_PORTA "DIO_PORTA"
+    int _DIO_PORTB "DIO_PORTB"
 
-    int DIO_DIR_IN 
-    int DIO_DIR_OUT
+    int _DIO_DIR_IN  "DIO_DIR_IN"
+    int _DIO_DIR_OUT "DIO_DIR_OUT"
 
-    int OFFSET_ADJUSTMENT  
-    int SE_GAIN_ADJUSTMENT 
-    int DE_GAIN_ADJUSTMENT 
-    int CAL_PIN_VOLTAGE    
+    int _SYNC "SYNC"
+    int _EXT_TRIG_EDGE "EXT_TRIG_EDGE"
+    int _UPDATE_MODE  "UPDATE_MODE"
 
-    int SYNC           
-    int EXT_TRIG_EDGE  
-    int UPDATE_MODE 
+    int _SE_10_00V "SE_10_00V"
+    int _BP_20_00V "BP_20_00V"
+    int _BP_10_00V "BP_10_00V"
+    int _BP_5_00V "BP_5_00V"
+    int _BP_4_00V "BP_4_00V"
+    int _BP_2_50V "BP_2_50V"
+    int _BP_2_00V "BP_2_00V"
+    int _BP_1_25V "BP_1_25V"
+    int _BP_1_00V "BP_1_00V"
 
-    int SE_10_00V
-    int BP_20_00V  
-    int BP_10_00V  
-    int BP_5_00V
-    int BP_4_00V
-    int BP_2_50V
-    int BP_2_00V
-    int BP_1_25V
-    int BP_1_00V
-
-    int AIN_EXECUTION     
-    int AIN_TRANSFER_MODE 
-    int AIN_TRIGGER     
-    int AIN_DEBUG         
-    int AIN_GAIN_QUEUE  
+    int _AIN_EXECUTION "AIN_EXECUTION"
+    int _AIN_TRANSFER_MODE "AIN_TRANSFER_MODE"
+    int _AIN_TRIGGER "AIN_TRIGGER"
+    int _AIN_DEBUG "AIN_DEBUG"
+    int _AIN_GAIN_QUEUE  "AIN_GAIN_QUEUE"
 
     # functions
     # numerical are converted to np equivs, arrays are converted to numpy arrays
