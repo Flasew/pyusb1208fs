@@ -4,15 +4,16 @@
 #              Based on Warren Jaspers' C drivers.
 #              Referenced Guillaume Lepert's python wrapper for USB26xx series.
 
-from distutils.core import setup, Extension
+#from distutils.core import Extension
+from setuptools import setup, Extension
 from Cython.Distutils import build_ext
 import numpy
 
 classifiers = [
-    'Development Status :: 4 - Beta Development Status',
+    "Development Status :: 5 - Production/Stable",
     'Environment :: Console',
     'Intended Audience :: Science/Research',
-    'License :: LGPL License',
+    'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
     'Natural Language :: English',
     'Operating System :: POSIX :: Linux',
     'Programming Language :: C',
@@ -29,7 +30,7 @@ usb1208fs = Extension("usb1208fs",
             libraries = ['usb-1.0', 'mccusb', 'hidapi-libusb', 'm', 'c'])
 
 setup(
-    name = '_usb1208fs',
+    name = 'usb1208fs',
     version = '0.1.0',
     description = "Python drivers for Measurement Computing USB1208FS on linux",
     author = 'Weiyang Wang',
