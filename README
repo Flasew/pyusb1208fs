@@ -57,7 +57,7 @@ Analog Scan:
 
 For more detailed usage information, please see the function headers and the 
 original .h file:
-
+https://github.com/Flasew/pyusb1208fs/blob/master/usb1208fs/usb1208fs.pyx
 https://github.com/wjasper/Linux_Drivers/blob/master/USB/mcc-libusb/usb-1208FS.h
 
 [ERROR CONDITIONS]
