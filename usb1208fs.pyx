@@ -21,6 +21,55 @@ np.import_array()
 if libusb_init(NULL) != 0:
     raise ImportError("Could not load libusb.")
 
+# constants
+USB1208FS_PID = c1208fs.USB1208FS_PID
+
+DIO_PORTA = c1208fs.DIO_PORTA
+DIO_PORTB = c1208fs.DIO_PORTB
+
+DIO_DIR_IN = c1208fs.DIO_DIR_IN
+DIO_DIR_OUT = c1208fs.DIO_DIR_OUT
+
+SYNC = c1208fs.SYNC
+EXT_TRIG_EDGE = c1208fs.EXT_TRIG_EDGE
+UPDATE_MODE = c1208fs.UPDATE_MODE
+
+SE_10_00V = c1208fs.SE_10_00V
+BP_20_00V = c1208fs.BP_20_00V
+BP_10_00V = c1208fs.BP_10_00V
+BP_5_00V = c1208fs.BP_5_00V
+BP_4_00V = c1208fs.BP_4_00V
+BP_2_50V = c1208fs.BP_2_50V
+BP_2_00V = c1208fs.BP_2_00V
+BP_1_25V = c1208fs.BP_1_25V
+BP_1_00V = c1208fs.BP_1_00V
+  
+AIN_EXECUTION = c1208fs.AIN_EXECUTION
+AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE
+AIN_TRIGGER = c1208fs.AIN_TRIGGER
+AIN_DEBUG = c1208fs.AIN_DEBUG     
+AIN_GAIN_QUEUE = c1208fs.AIN_GAIN_QUEUE
+
+# module-scale functions
+def toVoltsFS(int gain, int num):
+    """Wraps volts_FS():
+    converts signed short value to volts for Differential Mode
+    """
+    return <float>volts_FS(gain, num)
+
+
+def toVoltsSE(int num):
+    """ Same as volts_SE, rewritten in cython
+
+    Parameters: 
+    num {short} - 16-bit number read by DAQ
+
+    Returns: {np.float32_t} read value in volts
+    """
+    cdef np.float32_t volt = 0.0
+    volt = num * 10.0 / 0x7fff
+    return <float>volt
+
 cdef class USB1208FS:
     """Python wrapper of the C-based USB_1208FS DAQ driver written by 
     Warren J. Jasper. Wraps the driver in an object-ordinated way.
@@ -36,33 +85,6 @@ cdef class USB1208FS:
     cdef libusb_device_handle * udev
     cdef int maxPacketSize
 
-    USB1208FS_PID = c1208fs.USB1208FS_PID
-
-    DIO_PORTA = c1208fs.DIO_PORTA
-    DIO_PORTB = c1208fs.DIO_PORTB
-
-    DIO_DIR_IN = c1208fs.DIO_DIR_IN
-    DIO_DIR_OUT = c1208fs.DIO_DIR_OUT
-
-    SYNC = c1208fs.SYNC
-    EXT_TRIG_EDGE = c1208fs.EXT_TRIG_EDGE
-    UPDATE_MODE = c1208fs.UPDATE_MODE
-
-    SE_10_00V = c1208fs.SE_10_00V
-    BP_20_00V = c1208fs.BP_20_00V
-    BP_10_00V = c1208fs.BP_10_00V
-    BP_5_00V = c1208fs.BP_5_00V
-    BP_4_00V = c1208fs.BP_4_00V
-    BP_2_50V = c1208fs.BP_2_50V
-    BP_2_00V = c1208fs.BP_2_00V
-    BP_1_25V = c1208fs.BP_1_25V
-    BP_1_00V = c1208fs.BP_1_00V
-      
-    AIN_EXECUTION = c1208fs.AIN_EXECUTION
-    AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE
-    AIN_TRIGGER = c1208fs.AIN_TRIGGER
-    AIN_DEBUG = c1208fs.AIN_DEBUG     
-    AIN_GAIN_QUEUE = c1208fs.AIN_GAIN_QUEUE
 
     @cython.boundscheck(False)
     @cython.wraparound(False)
@@ -534,25 +556,6 @@ cdef class USB1208FS:
         if init_USB1208FS(self.udev) < 0:
             raise ValueError("Failed to initialize USB1208FS.")
 
-    @staticmethod
-    def toVoltsFS(int gain, int num):
-        """Wraps volts_FS():
-        converts signed short value to volts for Differential Mode
-        """
-        return <float>volts_FS(gain, num)
-
-    @staticmethod
-    def toVoltsSE(int num):
-        """ Same as volts_SE, rewritten in cython
-
-        Parameters: 
-        num {short} - 16-bit number read by DAQ
-
-        Returns: {np.float32_t} read value in volts
-        """
-        cdef np.float32_t volt = 0.0
-        volt = num * 10.0 / 0x7fff
-        return <float>volt
 
 
 

@@ -1,4 +1,0 @@
-running build_ext
-cythoning 1208fs.pyx to 1208fs.c
-building 'wrapper' extension
-x86_64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -Wdate-time -D_FORTIFY_SOURCE=2 -g -fdebug-prefix-map=/build/python2.7-ZZaKJ6/python2.7-2.7.13=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I. -I.. -I/home/frank/.local/lib/python2.7/site-packages/numpy/core/include -I/usr/lib64/python/site-packages/Cython/Includes -I/usr/include/python2.7 -c 1208fs.c -o build/temp.linux-x86_64-2.7/1208fs.o
