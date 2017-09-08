@@ -5,9 +5,11 @@
 #              MCC USB-1208FS DAQ's C driver. See original C Code for 
 #              documentation.
 
-from c1208fs cimport *
+from __future__ import print_function
 from libc.stdlib cimport malloc, free
 from libc.stdint cimport uint8_t, uint16_t, uint32_t, int16_t
+cimport c1208fs
+from c1208fs cimport *
 cimport numpy as np
 import numpy as np
 import sys
@@ -15,14 +17,9 @@ cimport cython
 
 np.import_array()
 
-import atexit
-
 # initialize libusb on load. Register the exit function for exit. 
 if libusb_init(NULL) != 0:
     raise ImportError("Could not load libusb.")
-    sys.exit(-1)
-
-atexit.register(libusb_exit, NULL)
 
 cdef class USB1208FS:
     """Python wrapper of the C-based USB_1208FS DAQ driver written by 
@@ -35,9 +32,37 @@ cdef class USB1208FS:
                               on the heap
 
     Constants are from usb-1208FS.h"""
-
+    
     cdef libusb_device_handle * udev
     cdef int maxPacketSize
+
+    USB1208FS_PID = c1208fs.USB1208FS_PID
+
+    DIO_PORTA = c1208fs.DIO_PORTA
+    DIO_PORTB = c1208fs.DIO_PORTB
+
+    DIO_DIR_IN = c1208fs.DIO_DIR_IN
+    DIO_DIR_OUT = c1208fs.DIO_DIR_OUT
+
+    SYNC = c1208fs.SYNC
+    EXT_TRIG_EDGE = c1208fs.EXT_TRIG_EDGE
+    UPDATE_MODE = c1208fs.UPDATE_MODE
+
+    SE_10_00V = c1208fs.SE_10_00V
+    BP_20_00V = c1208fs.BP_20_00V
+    BP_10_00V = c1208fs.BP_10_00V
+    BP_5_00V = c1208fs.BP_5_00V
+    BP_4_00V = c1208fs.BP_4_00V
+    BP_2_50V = c1208fs.BP_2_50V
+    BP_2_00V = c1208fs.BP_2_00V
+    BP_1_25V = c1208fs.BP_1_25V
+    BP_1_00V = c1208fs.BP_1_00V
+      
+    AIN_EXECUTION = c1208fs.AIN_EXECUTION
+    AIN_TRANSFER_MODE = c1208fs.AIN_TRANSFER_MODE
+    AIN_TRIGGER = c1208fs.AIN_TRIGGER
+    AIN_DEBUG = c1208fs.AIN_DEBUG     
+    AIN_GAIN_QUEUE = c1208fs.AIN_GAIN_QUEUE
 
     @cython.boundscheck(False)
     @cython.wraparound(False)
@@ -52,8 +77,9 @@ cdef class USB1208FS:
             init_USB1208FS(self.udev)
         self.maxPacketSize = usb_get_max_packet_size(self.udev, 0)
 
-    def __dealloc__(self):
+    def __del__(self):
         """Fully close the device."""
+        print("Closing...")
         cdef int i = 0
         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_IN | 1)
         libusb_clear_halt(self.udev, LIBUSB_ENDPOINT_OUT| 2)
@@ -174,7 +200,8 @@ cdef class USB1208FS:
         For safety issue, I'll copy the result of scan to a python list
         """
 
-        cdef np.int16_t * data = <np.int16_t*>malloc(count * sizeof(np.int16_t))
+        cdef np.uint16_t * data = \
+                <np.uint16_t*>malloc(count * sizeof(np.uint16_t))
         if not data:
             raise MemoryError()
 
@@ -203,7 +230,7 @@ cdef class USB1208FS:
         This command stops the analog input scan (if running.)
         Unlikely to be used.
         """
-        usbAIn_USB1208FS(self.udev)
+        usbAInStop_USB1208FS(self.udev)
 
     def ainScan(self, np.uint8_t lowchannel, np.uint8_t highchannel, 
             np.uint32_t count, np.float32_t freq, np.uint8_t options):
@@ -370,7 +397,7 @@ cdef class USB1208FS:
         counter tallies the transitions of an external input attached to
         the CTR pin on the screw terminal of the device.
         """
-        return <int>usbReadCounter_USB1208FS(self)
+        return <int>usbReadCounter_USB1208FS(self.udev)
 
     def readMemory(self, np.uint16_t address, np.uint8_t count):
         """Wraps usbReadMemory_USB1208FS():
@@ -385,14 +412,22 @@ cdef class USB1208FS:
 
         Returns: {list} data in the memory
         """
-        cdef np.uint8_t[count] memory
-        usbReadMemory_USB1208FS(self.udev, address, count, &memory)
+        cdef np.uint8_t * memory = \
+                <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
+        if not memory:
+            raise MemoryError()
 
-        dataList = []
         cdef int i = 0
-        for i in range(count):
-            dataList.append(<int>memory[i])
-        return dataList         #XXX
+
+        try:
+            usbReadMemory_USB1208FS(self.udev, address, count, memory)
+            dataList = []
+            for i in range(count):
+                dataList.append(<int>memory[i])
+            return dataList         #XXX
+
+        finally:
+            free(memory)
 
     def writeMemory(self, np.uint16_t address, np.uint8_t count, data):
         """Wraps usbWriteMemory_USB1208FS():
@@ -405,8 +440,8 @@ cdef class USB1208FS:
         Arguments:
         data {list} - data to be written into the memory
         """
-        cdef np.uint8_t * dataArr = 
-            <np.uint8_t>malloc(count * sizeof(np.uint8_t))
+        cdef np.uint8_t * dataArr = \
+            <np.uint8_t*>malloc(count * sizeof(np.uint8_t))
         if not dataArr:
             raise MemoryError()
 
@@ -488,7 +523,7 @@ cdef class USB1208FS:
 
         XXX: Returns: {list} - all data from all ports
         """
-        raise NotInplementedError("Currently not supported")
+        raise NotImplementedError("Currently not supported")
 
     def init(self):
         """Wraps init_USB1208FS():
@@ -518,6 +553,7 @@ cdef class USB1208FS:
         cdef np.float32_t volt = 0.0
         volt = num * 10.0 / 0x7fff
         return <float>volt
+
 
 
 

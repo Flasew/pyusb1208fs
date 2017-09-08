@@ -3,8 +3,8 @@ from Cython.Distutils import build_ext
 import numpy
 
 
-usb1208fs = Extension("wrapper",
-            sources = ["1208fs.pyx", "mccdaq-extra.c"],
+usb1208fs = Extension("usb1208fs",
+            sources = ["usb1208fs.pyx"],
             library_dirs = ['.','usr/local/lib'],
             include_dirs = ['.', '..', numpy.get_include(), \
                 '/usr/lib64/python/site-packages/Cython/Includes'],
@@ -12,7 +12,7 @@ usb1208fs = Extension("wrapper",
 
 
 setup(
-    name = 'usb1208fs',
+    name = '_usb1208fs',
     version = '0.1',
     description = "Python drivers for Measurement Computing usb1208fs on linux",
     author = 'Weiyang Wang',

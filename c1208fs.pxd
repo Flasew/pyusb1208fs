@@ -34,23 +34,26 @@ cdef extern from "<math.h>":
 cdef extern from "<string.h>":
     pass
 
+# <libusb-1.0/libusb.h> which is included by pmd.h
+cdef extern from "<libusb-1.0/libusb.h>":
+    struct libusb_device_handle:
+        pass
+    struct libusb_context:
+        pass
+    int LIBUSB_ENDPOINT_OUT
+    int LIBUSB_ENDPOINT_IN
+    int  libusb_init(libusb_context ** context)
+    void libusb_exit(libusb_context * ctx) 
+    int  libusb_clear_halt(libusb_device_handle * dev, unsigned char endpoint)
+    int  libusb_release_interface (libusb_device_handle * dev, \
+        int interface_number)
+    void libusb_close(libusb_device_handle * dev_handle)
+
 # pmd.h
 cdef extern from "pmd.h":
     libusb_device_handle * usb_device_find_USB_MCC(int productId,
         char * serialID)
     int usb_get_max_packet_size(libusb_device_handle * udev, int endpointNum)
-
-# <libusb-1.0/libusb.h> which is included by pmd.h
-cdef extern from <libusb-1.0/libusb.h>:
-    cdef struct libusb_device_handle:
-        pass
-    int  libusb_init(libusb_context ** context)
-    void libusb_exit(struct libusb_context * ctx) 
-    int  libusb_clear_halt(libusb_device_handle * dev, unsigned char endpoint)
-    int  libusb_release_interface libusb_device_handle * dev, 
-        int interface_number)
-    void libusb_close(libusb_device_handle * dev)
-    void libusb_exit(libusb_context ** context)
 
 
 # usb-1208FS.h
