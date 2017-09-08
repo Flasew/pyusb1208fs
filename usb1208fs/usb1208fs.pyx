@@ -1,9 +1,22 @@
 # Filename: 1208fs.pyx
-# Author: Weiyang Wang
+# Author: Weiyang Wang <wew168@ucsd.edu>
 # Date: Sept 5, 2017
 # Description: Cython module code, python wrapper of the 
 #              MCC USB-1208FS DAQ's C driver. See original C Code for 
 #              documentation.
+#              
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 from __future__ import print_function
 from libc.stdlib cimport malloc, free
@@ -120,6 +133,7 @@ cdef class USB1208FS:
         """
         if usbDConfigPort_USB1208FS(self.udev, port, direction) != 0:
             raise ValueError("Could not configure port.")
+        return self     # allows chaining
 
     def din(self, np.uint8_t port):
         """Wraps usbDIn_USB1208FS():
