@@ -31,7 +31,7 @@ usb1208fs = Extension("usb1208fs",
 
 setup(
     name = 'usb1208fs',
-    version = '0.1.2',
+    version = '0.1.3r9',
     description = "Python drivers for Measurement Computing USB1208FS on linux",
     author = 'Weiyang Wang',
     author_email = 'wew168@ucsd.edu',
@@ -47,8 +47,8 @@ setup(
     This module requires Warren Jaspers' C drivers to be already installed (see ftp://lx10.tx.ncsu.edu/pub/Linux/drivers/USB/)
     """,
     cmdclass = {'build_ext': build_ext},
-    packages = find_packages(),
-    include_package_data=True,
+    #packages = find_packages(),
+    #include_package_data=True,
     zip_safe = False,
     ext_modules = cythonize(usb1208fs),
     install_requires = ['numpy', 'cython'],

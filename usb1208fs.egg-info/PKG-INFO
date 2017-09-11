@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: usb1208fs
-Version: 0.1.2
+Version: 0.1.3.post9
 Summary: Python drivers for Measurement Computing USB1208FS on linux
 Home-page: https://github.com/Flasew/pyusb1208fs
 Author: Weiyang Wang

@@ -4,7 +4,6 @@ README
 setup.cfg
 setup.py
 ./setup.py
-./usb1208fs/__init__.py
 ./usb1208fs/c1208fs.pxd
 ./usb1208fs/pmd.c
 ./usb1208fs/pmd.h
@@ -13,7 +12,6 @@ setup.py
 ./usb1208fs/usb1208fs.c
 ./usb1208fs/usb1208fs.pyx
 usb1208fs/.DS_Store
-usb1208fs/__init__.py
 usb1208fs/__init__.pyc
 usb1208fs/c1208fs.pxd
 usb1208fs/pmd.c
