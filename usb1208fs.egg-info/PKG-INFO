@@ -6,14 +6,13 @@ Home-page: https://github.com/Flasew/pyusb1208fs
 Author: Weiyang Wang
 Author-email: wew168@ucsd.edu
 License: UNKNOWN
-Description-Content-Type: UNKNOWN
 Description: Python wrapper of the C-driver of MCC USB1208FS data acquisition card written by Warren Jaspers.
         
-            Functionality includes analog/digital input/output, analog input/output scans, counter, etc. 
-            See Warren Jaspers' C-library for more details. 
+            Functionality includes analog/digital input/output, analog input/output scans, counter, etc.
+            See Warren Jaspers' C-library for more details.
         
             This module is mostly just a python wrapper of the original C-driver; some object-orientated
-            concepts and python list support were added for a more user-friendly interface. 
+            concepts and python list support were added for a more user-friendly interface.
         
             This module requires Warren Jaspers' C drivers to be already installed (see ftp://lx10.tx.ncsu.edu/pub/Linux/drivers/USB/)
             
