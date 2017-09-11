@@ -1,11 +1,12 @@
 Metadata-Version: 1.1
 Name: usb1208fs
-Version: 0.1.0
+Version: 0.1.2
 Summary: Python drivers for Measurement Computing USB1208FS on linux
 Home-page: https://github.com/Flasew/pyusb1208fs
 Author: Weiyang Wang
 Author-email: wew168@ucsd.edu
 License: UNKNOWN
+Description-Content-Type: UNKNOWN
 Description: Python wrapper of the C-driver of MCC USB1208FS data acquisition card written by Warren Jaspers.
         
             Functionality includes analog/digital input/output, analog input/output scans, counter, etc.
