@@ -67,7 +67,7 @@ cdef extern from "pmd.h":
     libusb_device_handle * usb_device_find_USB_MCC(int productId,
         char * serialID)
     int usb_get_max_packet_size(libusb_device_handle * udev, int endpointNum)
-    int getUsbSerialNumber(libusb_device_handle * udev, char serial[])
+    int getUsbSerialNumber(libusb_device_handle * udev, unsigned char serial[])
 
 
 # usb-1208FS.h

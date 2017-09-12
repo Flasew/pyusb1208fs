@@ -556,7 +556,7 @@ cdef class USB1208FS:
         """Wraps getUsbSerialNumber() in pmd.h, 
         returns the serial number as a python string
         """
-        cdef char[9] serial = { 0 }
+        cdef unsigned char[9] serial 
         if getUsbSerialNumber(self.udev, serial) < 0:
             raise ValueError()
 
