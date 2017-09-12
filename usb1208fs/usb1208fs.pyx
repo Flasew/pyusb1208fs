@@ -269,7 +269,8 @@ cdef class USB1208FS:
         usbAInStop_USB1208FS(self.udev)
 
     def ainScan(self, np.uint8_t lowchannel, np.uint8_t highchannel, 
-            np.uint32_t count, np.float32_t freq, np.uint8_t options):
+            np.uint32_t count, np.float32_t freq, 
+            np.uint8_t options = (AIN_GAIN_QUEUE | AIN_EXECUTION)):
         """Wraps usbAInScan_USB1208FS() with modifications:
         This command scans a range of analog input channels and sends the
         readings in interrupt transfers. The gain ranges that are
@@ -352,7 +353,8 @@ cdef class USB1208FS:
             free(data)
 
     def ainScanSE(self, np.uint8_t lowchannel, np.uint8_t highchannel, 
-            np.uint32_t count, np.float32_t freq, np.uint8_t options):
+            np.uint32_t count, np.float32_t freq, 
+            np.uint8_t options = (AIN_GAIN_QUEUE | AIN_EXECUTION)):
         """Wraps usbAInScan_USB1208FS_SE() with modifications:
         scan for Single Ended
         Modified: 
@@ -550,6 +552,16 @@ cdef class USB1208FS:
         """
         usbSetSync_USB1208FS(self.udev, _type)
 
+    def getSerial(self):
+        """Wraps getUsbSerialNumber() in pmd.h, 
+        returns the serial number as a python string
+        """
+        cdef char[9] serial = { 0 }
+        if getUsbSerialNumber(self.udev, serial) < 0:
+            raise ValueError()
+
+        return <bytes>serial
+
     def _getAll(self):
         """Wraps usbGetAll_USB1208FS():
         This command reads the value from all analog input channels 
@@ -569,6 +581,8 @@ cdef class USB1208FS:
         """
         if init_USB1208FS(self.udev) < 0:
             raise ValueError("Failed to initialize USB1208FS.")
+
+
 
 
 
