@@ -5,8 +5,8 @@
 #              Referenced Guillaume Lepert's python wrapper for USB26xx series.
 
 from setuptools import setup, Extension, find_packages
-from Cython.Distutils import build_ext
-from Cython.Build import cythonize
+from distutils.command.sdist import sdist as _sdist
+
 import numpy
 
 classifiers = [
@@ -22,16 +22,43 @@ classifiers = [
     'Topic :: Scientific/Engineering'
 ]
 
-usb1208fs = Extension("usb1208fs",
-            sources = ["usb1208fs/usb1208fs.pyx"],
+cmdclass = { }
+
+class sdist(_sdist):
+    def run(self):
+        # Make sure the compiled Cython files in the distribution are up-to-date
+        from Cython.Build import cythonize
+        cythonize(['usb1208fs/usb1208fs.pyx'])
+        _sdist.run(self)
+
+cmdclass['sdist'] = sdist
+usb1208fs = []
+
+try:
+    from Cython.Distutils import build_ext
+    from Cython.Build import cythonize
+except ImportError:
+    use_cython = False
+    usb1208fs += [Extension("usb1208fs",
+            sources = ["usb1208fs/usb1208fs.c"],
             library_dirs = ['usb1208fs','/usr/local/lib'],
             include_dirs = ['usb1208fs', numpy.get_include(), \
                 '/usr/lib64/python/site-packages/Cython/Includes'],
-            libraries = ['usb-1.0', 'mccusb', 'hidapi-libusb', 'm', 'c'])
+            libraries = ['usb-1.0', 'mccusb', 'hidapi-libusb', 'm', 'c'])]
+else:
+    use_cython = True
+    usb1208fs += [Extension("usb1208fs",
+                sources = ["usb1208fs/usb1208fs.pyx"],
+                library_dirs = ['usb1208fs','/usr/local/lib'],
+                include_dirs = ['usb1208fs', numpy.get_include(), \
+                    '/usr/lib64/python/site-packages/Cython/Includes'],
+                libraries = ['usb-1.0', 'mccusb', 'hidapi-libusb', 'm', 'c'])]
+    cmdclass.update({ 'build_ext': build_ext })
+
 
 setup(
     name = 'usb1208fs',
-    version = '0.1.3r9',
+    version = '0.2.0r1',
     description = "Python drivers for Measurement Computing USB1208FS on linux",
     author = 'Weiyang Wang',
     author_email = 'wew168@ucsd.edu',
@@ -44,15 +71,17 @@ setup(
     This module is mostly just a python wrapper of the original C-driver; some object-orientated
     concepts and python list support were added for a more user-friendly interface.
 
-    This module requires Warren Jaspers' C drivers to be already installed (see ftp://lx10.tx.ncsu.edu/pub/Linux/drivers/USB/)
+    This module requires Warren Jaspers' C drivers to be already installed (see https://github.com/wjasper/Linux_Drivers)
     """,
-    cmdclass = {'build_ext': build_ext},
+    cmdclass = cmdclass,
     #packages = find_packages(),
     #include_package_data=True,
     zip_safe = False,
-    ext_modules = cythonize(usb1208fs),
-    install_requires = ['numpy', 'cython'],
+    ext_modules = cythonize(usb1208fs) if use_cython else usb1208fs,
+    install_requires = ['numpy'],
     platforms=['linux'],
     classifiers = classifiers
 )
+
+
 
